@@ -1,14 +1,29 @@
 package com.mvvm.pathfinder
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class CharacterViewModel(private val characterRepository: CharacterRepository)
-    : ViewModel() {
+class CharacterViewModel(private val character: Character) : ViewModel() {
 
-    // wrap repo functions
-    fun modifyStr(modifier: Int) {
-        characterRepository.modifyStr(modifier)
+    val stats: MutableLiveData<HashMap<Stat, Int>> = MutableLiveData<HashMap<Stat, Int>>()
+
+    fun initStats() {
+        if (stats.value == null) {
+            stats.value = character.getStats()
+        }
     }
 
-    fun getCharacter() = characterRepository.getCharacter()
+    fun updateStats() {
+        stats.value = character.getStats()
+    }
+
+    fun incrementStat(stat: Stat) {
+        character.adjustMod(stat, 1)
+        updateStats()
+    }
+
+    fun decrementStat(stat: Stat) {
+        character.adjustMod(stat, -1)
+        updateStats()
+    }
 }
