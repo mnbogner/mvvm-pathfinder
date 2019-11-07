@@ -15,7 +15,7 @@
             android:layout_marginStart="5dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintWidth_percent="0.33" />
+            app:layout_constraintWidth_percent="0.40" />
     <View
             android:id="@+id/right"
             android:layout_width="0dp"
@@ -24,7 +24,7 @@
             android:layout_marginEnd="5dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.33" />
+            app:layout_constraintWidth_percent="0.25" />
     <View
             android:id="@+id/middle"
             android:layout_width="0dp"
@@ -205,59 +205,66 @@
 
 
 
-    <TextView
-            android:id="@+id/st"
-            android:layout_width="50dp"
+    <Button
+            android:id="@+id/weapon_button"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:text="STR:"
-            android:gravity="center_vertical"
+            android:text="..."
+            android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/dmg"
-            app:layout_constraintStart_toStartOf="@id/middle"/>
-
-    <TextView
-            android:id="@+id/dx"
-            android:layout_width="50dp"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
+    <Button
+            android:id="@+id/grapple_button"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:text="DEX:"
-            android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/st"
-            app:layout_constraintStart_toStartOf="@id/middle"/>
-
-    <TextView
-            android:id="@+id/cn"
-            android:layout_width="50dp"
+            android:text="..."
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/weapon_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
+    <Button
+            android:id="@+id/pin_button"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:text="CON:"
-            android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/dx"
-            app:layout_constraintStart_toStartOf="@id/middle"/>
-
-    <TextView
-            android:id="@+id/in"
-            android:layout_width="50dp"
+            android:text="..."
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/grapple_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
+    <Button
+            android:id="@+id/rage_button"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:text="INT:"
-            android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/cn"
-            app:layout_constraintStart_toStartOf="@id/middle"/>
-
-    <TextView
-            android:id="@+id/wi"
-            android:layout_width="50dp"
+            android:text="..."
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/pin_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
+    <Button
+            android:id="@+id/haste_button"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:text="WIS:"
-            android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/in"
-            app:layout_constraintStart_toStartOf="@id/middle"/>
-
-    <TextView
-            android:id="@+id/ch"
-            android:layout_width="50dp"
+            android:text="..."
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/rage_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
+    <Button
+            android:id="@+id/enlarge_button"
+            android:layout_width="0dp"
             android:layout_height="40dp"
-            android:text="CHA:"
-            android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/wi"
-            app:layout_constraintStart_toStartOf="@id/middle"/>
+            android:text="..."
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/haste_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
+
+
+
+
+
+
 
     <TextView
             android:id="@+id/st_val"
@@ -266,7 +273,7 @@
             android:text="10"
             android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/dmg"
-            app:layout_constraintStart_toEndOf="@id/st"/>
+            app:layout_constraintEnd_toEndOf="@id/middle"/>
 
     <TextView
             android:id="@+id/dx_val"
@@ -275,7 +282,7 @@
             android:text="10"
             android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/st_val"
-            app:layout_constraintStart_toEndOf="@id/dx"/>
+            app:layout_constraintEnd_toEndOf="@id/middle"/>
 
     <TextView
             android:id="@+id/cn_val"
@@ -284,7 +291,7 @@
             android:text="10"
             android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/dx_val"
-            app:layout_constraintStart_toEndOf="@id/cn"/>
+            app:layout_constraintEnd_toEndOf="@id/middle"/>
 
     <TextView
             android:id="@+id/in_val"
@@ -293,7 +300,7 @@
             android:text="10"
             android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/cn_val"
-            app:layout_constraintStart_toEndOf="@id/in"/>
+            app:layout_constraintEnd_toEndOf="@id/middle"/>
 
     <TextView
             android:id="@+id/wi_val"
@@ -302,7 +309,7 @@
             android:text="10"
             android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/in_val"
-            app:layout_constraintStart_toEndOf="@id/wi"/>
+            app:layout_constraintEnd_toEndOf="@id/middle"/>
 
     <TextView
             android:id="@+id/ch_val"
@@ -311,20 +318,74 @@
             android:text="10"
             android:gravity="center_vertical"
             app:layout_constraintTop_toBottomOf="@id/wi_val"
-            app:layout_constraintStart_toEndOf="@id/ch"/>
+            app:layout_constraintEnd_toEndOf="@id/middle"/>
+
+    <TextView
+            android:id="@+id/st"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="STR:"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/dmg"
+            app:layout_constraintEnd_toStartOf="@id/st_val"/>
+
+    <TextView
+            android:id="@+id/dx"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="DEX:"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/st"
+            app:layout_constraintEnd_toStartOf="@id/dx_val"/>
+
+    <TextView
+            android:id="@+id/cn"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="CON:"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/dx"
+            app:layout_constraintEnd_toStartOf="@id/cn_val"/>
+
+    <TextView
+            android:id="@+id/in"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="INT:"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/cn"
+            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+
+    <TextView
+            android:id="@+id/wi"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="WIS:"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/in"
+            app:layout_constraintEnd_toStartOf="@id/wi_val"/>
+
+    <TextView
+            android:id="@+id/ch"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="CHA:"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toBottomOf="@id/wi"
+            app:layout_constraintEnd_toStartOf="@id/ch_val"/>
 
     <Button
             android:id="@+id/st_up"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/dmg"
-            app:layout_constraintStart_toEndOf="@id/st_val"/>
+            app:layout_constraintStart_toStartOf="@id/right"/>
 
     <Button
             android:id="@+id/st_down"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-"
             android:gravity="center"
@@ -333,16 +394,16 @@
 
     <Button
             android:id="@+id/dx_up"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/st_up"
-            app:layout_constraintStart_toEndOf="@id/dx_val"/>
+            app:layout_constraintStart_toStartOf="@id/right"/>
 
     <Button
             android:id="@+id/dx_down"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-"
             android:gravity="center"
@@ -351,16 +412,16 @@
 
     <Button
             android:id="@+id/cn_up"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/dx_up"
-            app:layout_constraintStart_toEndOf="@id/cn_val"/>
+            app:layout_constraintStart_toStartOf="@id/right"/>
 
     <Button
             android:id="@+id/cn_down"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-"
             android:gravity="center"
@@ -369,16 +430,16 @@
 
     <Button
             android:id="@+id/in_up"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/cn_up"
-            app:layout_constraintStart_toEndOf="@id/in_val"/>
+            app:layout_constraintStart_toStartOf="@id/right"/>
 
     <Button
             android:id="@+id/in_down"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-"
             android:gravity="center"
@@ -387,16 +448,16 @@
 
     <Button
             android:id="@+id/wi_up"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/in_up"
-            app:layout_constraintStart_toEndOf="@id/wi_val"/>
+            app:layout_constraintStart_toStartOf="@id/right"/>
 
     <Button
             android:id="@+id/wi_down"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-"
             android:gravity="center"
@@ -405,16 +466,16 @@
 
     <Button
             android:id="@+id/ch_up"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="+"
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/wi_up"
-            app:layout_constraintStart_toEndOf="@id/ch_val"/>
+            app:layout_constraintStart_toStartOf="@id/right"/>
 
     <Button
             android:id="@+id/ch_down"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_height="40dp"
             android:text="-"
             android:gravity="center"
