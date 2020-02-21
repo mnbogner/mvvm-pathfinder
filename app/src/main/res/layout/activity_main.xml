@@ -37,6 +37,7 @@
             app:layout_constraintEnd_toStartOf="@id/right" />
 
 
+
     <TextView
             android:id="@+id/hp"
             android:layout_width="50dp"
@@ -201,10 +202,6 @@
 
 
 
-
-
-
-
     <Button
             android:id="@+id/weapon_button"
             android:layout_width="0dp"
@@ -214,6 +211,7 @@
             app:layout_constraintTop_toBottomOf="@id/dmg"
             app:layout_constraintStart_toStartOf="@id/left"
             app:layout_constraintEnd_toEndOf="@id/left"/>
+
     <Button
             android:id="@+id/grapple_button"
             android:layout_width="0dp"
@@ -223,6 +221,7 @@
             app:layout_constraintTop_toBottomOf="@id/weapon_button"
             app:layout_constraintStart_toStartOf="@id/left"
             app:layout_constraintEnd_toEndOf="@id/left"/>
+
     <Button
             android:id="@+id/pin_button"
             android:layout_width="0dp"
@@ -232,8 +231,9 @@
             app:layout_constraintTop_toBottomOf="@id/grapple_button"
             app:layout_constraintStart_toStartOf="@id/left"
             app:layout_constraintEnd_toEndOf="@id/left"/>
+
     <Button
-            android:id="@+id/rage_button"
+            android:id="@+id/enlarge_button"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:text="..."
@@ -241,17 +241,19 @@
             app:layout_constraintTop_toBottomOf="@id/pin_button"
             app:layout_constraintStart_toStartOf="@id/left"
             app:layout_constraintEnd_toEndOf="@id/left"/>
+
     <Button
             android:id="@+id/haste_button"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:text="..."
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/rage_button"
+            app:layout_constraintTop_toBottomOf="@id/enlarge_button"
             app:layout_constraintStart_toStartOf="@id/left"
             app:layout_constraintEnd_toEndOf="@id/left"/>
+
     <Button
-            android:id="@+id/enlarge_button"
+            android:id="@+id/rage_button"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:text="..."
@@ -260,9 +262,35 @@
             app:layout_constraintStart_toStartOf="@id/left"
             app:layout_constraintEnd_toEndOf="@id/left"/>
 
+    <Button
+            android:id="@+id/skill_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="SKILLS"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/rage_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
 
+    <Button
+            android:id="@+id/spell_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="SPELLS"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/skill_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
 
-
+    <Button
+            android:id="@+id/feat_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="FEATS"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/spell_button"
+            app:layout_constraintStart_toStartOf="@id/left"
+            app:layout_constraintEnd_toEndOf="@id/left"/>
 
 
 
@@ -484,6 +512,35 @@
 
 
 
+    <Button
+            android:id="@+id/hp_up"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="HEAL"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/ch"
+            app:layout_constraintStart_toStartOf="@id/ch"
+            app:layout_constraintEnd_toEndOf="@id/ch_down"/>
+
+    <Button
+            android:id="@+id/hp_down"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="HURT"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/hp_up"
+            app:layout_constraintStart_toStartOf="@id/ch"
+            app:layout_constraintEnd_toEndOf="@id/ch_down"/>
+
+    <Button
+            android:id="@+id/nonlethal_down"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="NONLETHAL"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/hp_down"
+            app:layout_constraintStart_toStartOf="@id/ch"
+            app:layout_constraintEnd_toEndOf="@id/ch_down"/>
 
 
 

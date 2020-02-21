@@ -12,7 +12,7 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
     val armorMods: ArrayList<CharacterMod> = character.getArmorMods()
     val grappleMod: CharacterMod = character.getGrappleMod()
     val pinMod: CharacterMod = character.getPinMod()
-    val rageMod: CharacterMod = character.getRageMod()
+    val ragingMod: CharacterMod = character.getRagingMod()
     val hasteMod: CharacterMod = character.getHasteMod()
     val enlargeMod: CharacterMod = character.getEnlargeMod()
 
@@ -47,6 +47,10 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
         return defaultWeapon.modName
     }
 
+    fun getCurrentStat(stat: Stat): Int {
+        return character.getCurrentStat(stat)
+    }
+
     fun updateStats() {
         baseStats.value = character.getBaseStats()
         derivedStats.value = character.getDerivedStats()
@@ -59,6 +63,11 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
 
     fun decrementStat(stat: Stat) {
         character.adjustMod(stat, -1)
+        updateStats()
+    }
+
+    fun setStat(stat: Stat, mod: Int) {
+        character.adjustMod(stat, mod)
         updateStats()
     }
 
@@ -107,9 +116,9 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
 
     fun toggleRage(toggle: Boolean) {
         if (toggle) {
-            character.addMod(rageMod)
+            character.addMod(ragingMod)
         } else {
-            character.removeMod(rageMod)
+            character.removeMod(ragingMod)
         }
         updateStats()
     }

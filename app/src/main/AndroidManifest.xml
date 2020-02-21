@@ -14,6 +14,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".SkillActivity"></activity>
+        <activity android:name=".SpellActivity"></activity>
+        <activity android:name=".FeatActivity"></activity>
     </application>
 
 </manifest>

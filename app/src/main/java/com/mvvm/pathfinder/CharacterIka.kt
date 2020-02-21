@@ -15,17 +15,21 @@ class CharacterIka(characterName: String = "I'ka",
         // racial abilities - human: +2 cha, +1 ac (dodge), +1 ref/will (heart of the fey)
         // traits: +1 cmb/intimidate (bred for war), +1 hp/skill per lvl (finding your kin)
         // stats: +1 dex lv4, +1 cha lv8
+        // favored class bonus: +1 round rage per lvl
         // automatic progression - lv+1: resistance +3, deflection +2, mental prowess +2 wis, physical prowess +2 con, toughening +1
+        // belt of the weasel: +2 dex
         // divine favor - tegura: natural +1
+        // spells: 2+1 lv1, 1+1 lv2
         val progressionMod: CharacterMod = CharacterMod("progression", false, null,
             0, 1, 0,
-            1, 2, 0,
+            3, 2, 0,
             2, 3, 0,
             0, 0, 0,
             0, 2, 2,
             1, 0, 1,
             0, 3, 4,
-            4)
+            4, 9, 3,
+            2)
 
         // automatic progression lv+1: weapon attunement +2
         val cestusMod: CharacterMod = CharacterMod("cestus", false, Dice.D4,
@@ -33,6 +37,7 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 2,
             2, 0, 0,
+            0, 0, 0,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
@@ -47,11 +52,12 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
+            0, 0, 0,
             0)
 
         // improved grapple: +2 cmb/cmd
         // greater grapple: +2 cmb
-        val grapplingMod: CharacterMod = CharacterMod("grappling", true, Dice.D4,
+        val grapplingMod: CharacterMod = CharacterMod("grappling", false, Dice.D4,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
@@ -59,14 +65,16 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 4,
             2, 0, 0,
+            0, 0, 0,
             0)
 
-        // automatic progression lv+1: armor attunement +2
+        // automatic progression lv+1: kilt + armor attunement +2
         val chainMod: CharacterMod = CharacterMod("armor", false, null,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 4 + 2,
+            0, 0, 4 + 1 + 2,
+            0, 0, 0,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
@@ -80,10 +88,11 @@ class CharacterIka(characterName: String = "I'ka",
             1, 0, 0,
             0, 0, 0,
             0, 0, 0,
+            0, 0, 0,
             0)
 
         // grappling modifiers
-        val grappleMod: CharacterMod = CharacterMod("grapple", true, null,
+        val grappleMod: CharacterMod = CharacterMod("grapple", false, null,
             0, 0, 0,
             -4, 0, 0,
             0, 0, -2,
@@ -91,9 +100,11 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
+            0, 0, 0,
             0)
 
-        val pinMod: CharacterMod = CharacterMod("pin", true, null,
+        val pinMod: CharacterMod = CharacterMod("pin", false, null,
+            0, 0, 0,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
@@ -104,7 +115,7 @@ class CharacterIka(characterName: String = "I'ka",
             0)
 
         // rage modifiers
-        val rageMod: CharacterMod = CharacterMod("rage", false, null,
+        val ragingMod: CharacterMod = CharacterMod("rage", false, null,
             0, 0, 4,
             0, 4, 0,
             0, 0, 0,
@@ -112,7 +123,8 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            2)
+            2, 0, 0,
+            0)
 
         // haste modifiers
         val hasteMod: CharacterMod = CharacterMod("haste", false, null,
@@ -123,6 +135,7 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             1, 0, 0,
             0, 0, 1,
+            0, 0, 0,
             0)
 
         // enlarge modifiers
@@ -134,11 +147,17 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, -1, 0,
             0, 0, 0,
+            0, 0, 0,
             0)
     }
 
     override fun applyProgression() {
         addMod(progressionMod)
+    }
+
+    override fun getBaseStat(stat: Stat): Int {
+        // just need CON for now to calculate rounds of rage
+        return conBase + progressionMod.conMod
     }
 
     override fun getWeaponMods(): ArrayList<CharacterMod> {
@@ -164,8 +183,8 @@ class CharacterIka(characterName: String = "I'ka",
         return pinMod
     }
 
-    override fun getRageMod(): CharacterMod {
-        return rageMod
+    override fun getRagingMod(): CharacterMod {
+        return ragingMod
     }
 
     override fun getHasteMod(): CharacterMod {

@@ -1,5 +1,6 @@
 package com.mvvm.pathfinder
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -7,6 +8,12 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+
+        val SPELL_REQUEST: Int = 100
+
+    }
 
     private val viewModelFactory = CharacterInjector.getCharacterFactoryIka()
 
@@ -51,13 +58,19 @@ class MainActivity : AppCompatActivity() {
         }
         rage_button.setText("RAGE(off)")
         rage_button.setOnClickListener {
-            rageToggle = !rageToggle
-            viewModel.toggleRage(rageToggle)
             if (rageToggle) {
-                rage_button.setText("RAGE(on)")
+                viewModel.decrementStat(Stat.RAGE)
+            }
+        }
+        rage_button.setOnLongClickListener {
+            rageToggle = !rageToggle
+            if (rageToggle) {
+                rage_button.setText("RAGE(?)")
             } else {
                 rage_button.setText("RAGE(off)")
             }
+            viewModel.toggleRage(rageToggle)
+            true
         }
         haste_button.setText("HASTE(off)")
         haste_button.setOnClickListener {
@@ -78,6 +91,29 @@ class MainActivity : AppCompatActivity() {
             } else {
                 enlarge_button.setText("ENLARGE(off)")
             }
+        }
+
+        skill_button.setOnClickListener {
+            val i: Intent = Intent(this, SkillActivity::class.java)
+            // TODO: fix to pass parcelable character and mods (or just access view model from skill activity?)
+            i.putExtra(Stat.STR.name, Character.getBonus(viewModel.getCurrentStat(Stat.STR)))
+            i.putExtra(Stat.DEX.name, Character.getBonus(viewModel.getCurrentStat(Stat.DEX)))
+            i.putExtra(Stat.CON.name, Character.getBonus(viewModel.getCurrentStat(Stat.CON)))
+            i.putExtra(Stat.INT.name, Character.getBonus(viewModel.getCurrentStat(Stat.INT)))
+            i.putExtra(Stat.WIS.name, Character.getBonus(viewModel.getCurrentStat(Stat.WIS)))
+            i.putExtra(Stat.CHR.name, Character.getBonus(viewModel.getCurrentStat(Stat.CHR)))
+            startActivity(i)
+        }
+        spell_button.setOnClickListener {
+            val i: Intent = Intent(this, SpellActivity::class.java)
+            // TODO: fix to pass parcelable character and mods (or just access view model from spell activity?)
+            i.putExtra(Stat.LV1S.name, viewModel.getCurrentStat(Stat.LV1S))
+            i.putExtra(Stat.LV2S.name, viewModel.getCurrentStat(Stat.LV2S))
+            this.startActivityForResult(i, SPELL_REQUEST)
+        }
+        feat_button.setOnClickListener {
+            val i: Intent = Intent(this, FeatActivity::class.java)
+            this.startActivity(i)
         }
 
         st_up.setOnClickListener {
@@ -116,6 +152,16 @@ class MainActivity : AppCompatActivity() {
         ch_down.setOnClickListener {
             viewModel.decrementStat(Stat.CHR)
         }
+        hp_up.setOnClickListener {
+            viewModel.incrementStat(Stat.HP)
+        }
+        hp_down.setOnClickListener {
+            viewModel.decrementStat(Stat.HP)
+        }
+        nonlethal_down.setOnClickListener {
+            viewModel.incrementStat(Stat.NL)
+        }
+
     }
 
     private fun setup() {
@@ -141,11 +187,31 @@ class MainActivity : AppCompatActivity() {
             fort_val.setText(stats.getOrDefault(Stat.FORT, "?"))
             ref_val.setText(stats.getOrDefault(Stat.REF, "?"))
             will_val.setText(stats.getOrDefault(Stat.WILL, "?"))
+            if (rageToggle) {
+                rage_button.setText(stats.getOrDefault(Stat.RAGE, "?"))
+            }
         })
 
         defaultWeapon = viewModel.initStats()
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, i: Intent?) {
 
+        if (requestCode == SPELL_REQUEST) {
+            if (resultCode == SpellActivity.SPELL_RESULT && i != null) {
+
+                System.out.println("FOO - RESULT LV1: " + i.getIntExtra(SpellActivity.LV1_RESULT, 0) + ", LV2: " + i.getIntExtra(SpellActivity.LV2_RESULT, 0))
+
+                viewModel.setStat(Stat.LV1S, i.getIntExtra(SpellActivity.LV1_RESULT, 0))
+                viewModel.setStat(Stat.LV2S, i.getIntExtra(SpellActivity.LV2_RESULT, 0))
+            } else {
+                System.out.println("FOO - WRONG RESULT: " + resultCode)
+            }
+        } else {
+            System.out.println("FOO - WRONG REQUEST: " + requestCode)
+        }
+
+        super.onActivityResult(requestCode, resultCode, i)
+    }
 }

@@ -15,12 +15,19 @@ abstract class Character(val characterName: String,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
+            0, 0, 0,
             0)
+
+        fun getBonus(statVal: Int): Int {
+
+            return (statVal - 10) / 2
+        }
     }
 
     var mods: ArrayList<String> = ArrayList<String>()
 
     var tempMod: CharacterMod = CharacterMod("temp", false, null,
+        0, 0, 0,
         0, 0, 0,
         0, 0, 0,
         0, 0, 0,
@@ -56,9 +63,12 @@ abstract class Character(val characterName: String,
     var fortMod: Int = 0
     var refMod: Int = 0
     var willMod: Int = 0
+    var rageMod: Int = 0
+
+    var spells1Mod: Int = 0
+    var spells2Mod: Int = 0
 
     var dmgNonlethal: Int = 0
-    var roundsRage: Int = 0
     var useBothHands: Int = 0
     var flatFooted: Int = 0
 
@@ -80,7 +90,7 @@ abstract class Character(val characterName: String,
 
         // calculate hp / nonlethal damage
         var hp: Int = ((hpPerLvl + hpPerLvlMod + getBonus(Stat.CON)) * level) + hpMod + (hpPerLvl - 2) // hp per level = avg roll, but get max hp for lv1 (1d10 avg = 6 so +4, 1d8 avg = 5 s0 +3, etc)
-        var hpText: String = hp.toString()
+        var hpText: String = hp.toString() + "/" + (hp - tempMod.hpMod).toString()
         if (dmgNonlethal > 0) {
             hpText = hpText + "(" + dmgNonlethal + ")"
         }
@@ -127,6 +137,10 @@ abstract class Character(val characterName: String,
         var will: Int = willBase + willMod + getBonus(Stat.WIS)
         var willText: String = "+" + will.toString()
 
+        // calculate rounds of rage
+        var rage: Int = getBaseRage() + rageMod
+        var rageText: String = "RAGE(" + rage + ")"
+
         stats.put(Stat.HP, hpText)
         stats.put(Stat.HIT, hitText)
         stats.put(Stat.DMG, dmgText)
@@ -136,10 +150,48 @@ abstract class Character(val characterName: String,
         stats.put(Stat.FORT, fortText)
         stats.put(Stat.REF, refText)
         stats.put(Stat.WILL, willText)
+        stats.put(Stat.RAGE, rageText)
         return stats
     }
 
+    fun getCurrentStat(stat: Stat): Int {
+        when (stat) {
+            Stat.STR -> {
+                return strBase + strMod
+            }
+            Stat.DEX -> {
+                return dexBase + dexMod
+            }
+            Stat.CON -> {
+                return conBase + conMod
+            }
+            Stat.INT -> {
+                return intBase + intMod
+            }
+            Stat.WIS -> {
+                return wisBase + wisMod
+            }
+            Stat.CHR -> {
+                return chrBase + chrMod
+            }
+            Stat.LV1S -> {
+                return spells1Mod
+            }
+            Stat.LV2S -> {
+                return spells2Mod
+            }
+            else -> return 0
+        }
+    }
+
     abstract fun applyProgression()
+
+    abstract fun getBaseStat(stat: Stat): Int
+
+    fun getBaseRage(): Int {
+        // 4 + constitution modifier, 2 additional rounds for each level after 1st
+        return 4 + (getBonus(getBaseStat(Stat.CON))) + ((level - 1) * 2)
+    }
 
     abstract fun getWeaponMods(): ArrayList<CharacterMod>
 
@@ -149,7 +201,7 @@ abstract class Character(val characterName: String,
 
     abstract fun getPinMod(): CharacterMod
 
-    abstract fun getRageMod(): CharacterMod
+    abstract fun getRagingMod(): CharacterMod
 
     abstract fun getHasteMod(): CharacterMod
 
@@ -190,6 +242,10 @@ abstract class Character(val characterName: String,
             fortMod += mod.fortMod
             refMod += mod.refMod
             willMod += mod.willMod
+            rageMod += mod.rageMod
+
+            spells1Mod += mod.spells1Mod
+            spells2Mod += mod.spells2Mod
 
             if (mod.twoHands) {
                 useBothHands++
@@ -232,6 +288,10 @@ abstract class Character(val characterName: String,
             fortMod -= mod.fortMod
             refMod -= mod.refMod
             willMod -= mod.willMod
+            rageMod -= mod.rageMod
+
+            spells1Mod -= mod.spells1Mod
+            spells2Mod -= mod.spells2Mod
 
             if (mod.twoHands) {
                 useBothHands--
@@ -251,6 +311,14 @@ abstract class Character(val characterName: String,
         }
 
         when (stat) {
+            Stat.HP -> {
+                hpMod += mod
+                tempMod.hpMod += mod
+                if (mod > 0) {
+                    // hp recovery heals non lethal damage too
+                    dmgNonlethal -= mod
+                }
+            }
             Stat.STR -> {
                 strMod += mod
                 tempMod.strMod += mod
@@ -275,6 +343,25 @@ abstract class Character(val characterName: String,
                 chrMod += mod
                 tempMod.chrMod += mod
             }
+            Stat.RAGE -> {
+                if (getBaseRage() + rageMod == 0 ) {
+                    // loop around after hitting 0
+                    rageMod = 0
+                    tempMod.rageMod = 0
+                } else {
+                    rageMod += mod
+                    tempMod.rageMod += mod
+                }
+            }
+            Stat.NL -> {
+                dmgNonlethal += mod
+            }
+            Stat.LV1S -> {
+                spells1Mod = mod
+            }
+            Stat.LV2S -> {
+                spells2Mod = mod
+            }
             else -> return
         }
     }
@@ -283,22 +370,22 @@ abstract class Character(val characterName: String,
 
         when (stat) {
             Stat.STR -> {
-                return (strBase + strMod - 10) / 2
+                return getBonus(strBase + strMod)
             }
             Stat.DEX -> {
-                return (dexBase + dexMod - 10) / 2
+                return getBonus(dexBase + dexMod)
             }
             Stat.CON -> {
-                return (conBase + conMod - 10) / 2
+                return getBonus(conBase + conMod)
             }
             Stat.INT -> {
-                return (intBase + intMod - 10) / 2
+                return getBonus(intBase + intMod)
             }
             Stat.WIS -> {
-                return (wisBase + wisMod - 10) / 2
+                return getBonus(wisBase + wisMod)
             }
             Stat.CHR -> {
-                return (chrBase + chrMod - 10) / 2
+                return getBonus(chrBase + chrMod)
             }
             else -> return 0
         }
