@@ -127,6 +127,16 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
+            android:id="@+id/co_feat"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="Compression"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/cr_feat"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
             android:id="@+id/abilities"
             android:layout_width="wrap_content"
             android:layout_height="25dp"

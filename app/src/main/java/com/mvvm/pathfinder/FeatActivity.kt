@@ -196,6 +196,27 @@ class FeatActivity : AppCompatActivity() {
             message.textSize = 14f
         }
 
+        // from weasel belt
+        co_feat.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("The creature can move through an area as small as one-quarter its space without squeezing or one-eighth its space when squeezing.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/bestiary/rules-for-monsters/universal-monster-rules#TOC-Compression-Ex-")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
         br_ability.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("A bloodrager can enter a bloodrage as a free action. While in a bloodrage, a bloodrager gains a +4 morale bonus to his Strength and Constitution, as well as a +2 morale bonus on Will saves. In addition, he takes a –2 penalty to Armor Class. The increase to Constitution grants the bloodrager 2 hit points per Hit Die, but these disappear when the bloodrage ends and are not lost first like temporary hit points. While bloodraging, a bloodrager cannot use any Charisma-, Dexterity-, or Intelligence-based skills (except Acrobatics, Fly, Intimidate, and Ride) or any ability that requires patience or concentration.")

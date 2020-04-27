@@ -12,7 +12,7 @@ class CharacterMod (val modName: String, val twoHands: Boolean, val dmgDice: Dic
                          var acDodMod: Int, var acSizMod: Int, var cmbMod: Int,
                          var cmdMod: Int, var fortMod: Int, var refMod: Int,
                          var willMod: Int, var rageMod: Int, var spells1Mod: Int,
-                         var spells2Mod: Int) : Parcelable  {
+                         var spells2Mod: Int, var spells3Mod: Int) : Parcelable  {
 
     companion object {
         @JvmField
@@ -51,7 +51,8 @@ class CharacterMod (val modName: String, val twoHands: Boolean, val dmgDice: Dic
         willMod = parcel.readInt(),
         rageMod = parcel.readInt(),
         spells1Mod = parcel.readInt(),
-        spells2Mod = parcel.readInt()
+        spells2Mod = parcel.readInt(),
+        spells3Mod = parcel.readInt()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -88,6 +89,7 @@ class CharacterMod (val modName: String, val twoHands: Boolean, val dmgDice: Dic
         parcel.writeInt(rageMod)
         parcel.writeInt(spells1Mod)
         parcel.writeInt(spells2Mod)
+        parcel.writeInt(spells3Mod)
     }
 
     override fun describeContents() = 0

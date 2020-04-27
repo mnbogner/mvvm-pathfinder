@@ -140,13 +140,23 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
+            android:id="@+id/in_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Invisibility"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lv2_spells"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
             android:id="@+id/aa_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Animal Aspect"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/lv2_spells"
+            app:layout_constraintTop_toBottomOf="@id/in_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
@@ -213,5 +223,70 @@
             android:gravity="center"
             app:layout_constraintTop_toBottomOf="@id/ih_spell"
             app:layout_constraintEnd_toStartOf="@id/lv2_up"/>
+
+    <TextView
+            android:id="@+id/lv3_spells"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:text="LV3 SPELLS"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/ab_spell"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/vt_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Vampiric Touch"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lv3_spells"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/dr_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Draconic Reservoir"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/vt_spell"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <Button
+            android:id="@+id/lv3_down"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:minHeight="0dp"
+            android:layout_marginTop="5dp"
+            android:text="-"
+            android:includeFontPadding="false"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/ab_spell"
+            app:layout_constraintEnd_toEndOf="@id/aa_spell"/>
+
+    <Button
+            android:id="@+id/lv3_up"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:minHeight="0dp"
+            android:layout_marginTop="5dp"
+            android:text="+"
+            android:includeFontPadding="false"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/ab_spell"
+            app:layout_constraintEnd_toStartOf="@id/lv3_down"/>
+
+    <TextView
+            android:id="@+id/lv3_val"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:text="0"
+            android:textAlignment="center"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/ab_spell"
+            app:layout_constraintEnd_toStartOf="@id/lv3_up"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

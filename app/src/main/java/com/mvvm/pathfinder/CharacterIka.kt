@@ -1,10 +1,10 @@
 package com.mvvm.pathfinder
 
 class CharacterIka(characterName: String = "I'ka",
-    level: Int = 9, hpPerLvl: Int = 6, bab: Int = 9,
+    level: Int = 10, hpPerLvl: Int = 6, bab: Int = 10,
     strBase: Int = 14, dexBase: Int = 15, conBase: Int = 14,
     intBase: Int = 8, wisBase: Int = 14, chrBase: Int = 14,
-    fortBase: Int = 6, refBase: Int = 3, willBase: Int = 3) :
+    fortBase: Int = 7, refBase: Int = 3, willBase: Int = 3) :
     Character(characterName,
     level, hpPerLvl, bab,
     strBase, dexBase, conBase,
@@ -16,21 +16,22 @@ class CharacterIka(characterName: String = "I'ka",
         // traits: +1 cmb/intimidate (bred for war), +1 hp/skill per lvl (finding your kin)
         // stats: +1 dex lv4, +1 cha lv8
         // favored class bonus: +1 round rage per lvl
-        // automatic progression - lv+1: resistance +3, deflection +2, mental prowess +2 wis, physical prowess +2 con, toughening +1
+        // automatic progression - lv+1: resistance +3, deflection +2, mental prowess +4 wis, physical prowess +2 con, toughening +1
         // belt of the weasel: +2 dex
         // divine favor - tegura: natural +1
-        // spells: 2+1 lv1, 1+1 lv2
+        // spells: 2+1 lv1, 1+1 lv2, 1+1 lv3
         val progressionMod: CharacterMod = CharacterMod("progression", false, null,
-            0, 1, 0,
-            3, 2, 0,
-            2, 3, 0,
-            0, 0, 0,
-            0, 2, 2,
-            1, 0, 1,
-            0, 3, 4,
-            4, 9, 3,
-            2)
+            0, 1, 0,       // hp, hp/lvl, str
+            1+2, 2, 0,     // dex, con, int
+            4, 2+1, 0,     // wis, cha, hit
+            0, 0, 0,       // dmg, ac, armor
+            0, 2, 1+1,     // shield, deflect, natural
+            1, 0, 1,       // dodge, size, cmb
+            0, 3, 1+3,     // cmd, fort, ref
+            1+3, 1*10, 2+1, // will, rage*lvl, lv1 spells
+            1+1, 1+1)           // lv2 spells, lv3 spells
 
+        // cestus
         // automatic progression lv+1: weapon attunement +2
         val cestusMod: CharacterMod = CharacterMod("cestus", false, Dice.D4,
             0, 0, 0,
@@ -41,22 +42,50 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
 
-        // silvered: -1 dmg
-        val gladiusMod: CharacterMod = CharacterMod("gladius", false, Dice.D6,
+        // longspear
+        // reach, brace
+        val spearMod: CharacterMod = CharacterMod("spear", true, Dice.D8,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            -1, 0, 0,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0, 0,
+            0, 0)
+
+        // yaku'oi ironwood scimitar
+        // masterwork
+        val scimitarMod: CharacterMod = CharacterMod("scimitar", false, Dice.D6,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 1,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0)
+
+        // yaku'oi composite longbow
+        // +1, adaptive
+        val longbowMod: CharacterMod = CharacterMod("longbow", true, Dice.D8,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 1,
+            1, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0, 0,
+            0, 0)
 
         // improved grapple: +2 cmb/cmd
         // greater grapple: +2 cmb
+        // grabbing style: 1 handed
         val grapplingMod: CharacterMod = CharacterMod("grappling", false, Dice.D4,
             0, 0, 0,
             0, 0, 0,
@@ -66,10 +95,11 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 4,
             2, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
 
-        // automatic progression lv+1: kilt + armor attunement +2
-        val chainMod: CharacterMod = CharacterMod("armor", false, null,
+        // darkleaf lamellar + armored kilt
+        // automatic progression lv+1: armor attunement +2
+        val armorMod: CharacterMod = CharacterMod("armor", false, null,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
@@ -78,9 +108,10 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
 
-        val bucklerMod: CharacterMod = CharacterMod("shield", false, null,
+        // yaku'oi ironwood buckler
+        val shieldMod: CharacterMod = CharacterMod("shield", false, null,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
@@ -89,9 +120,10 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
 
         // grappling modifiers
+        // ignoring cmb penalty because it doesn't affect grappling while grappled
         val grappleMod: CharacterMod = CharacterMod("grapple", false, null,
             0, 0, 0,
             -4, 0, 0,
@@ -101,8 +133,10 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
 
+        // pinning modifiers
+        // grabbing style: don't lose dex bonus to ac when pinning
         val pinMod: CharacterMod = CharacterMod("pin", false, null,
             0, 0, 0,
             0, 0, 0,
@@ -112,7 +146,7 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
 
         // rage modifiers
         val ragingMod: CharacterMod = CharacterMod("rage", false, null,
@@ -124,7 +158,7 @@ class CharacterIka(characterName: String = "I'ka",
             0, 0, 0,
             0, 0, 0,
             2, 0, 0,
-            0)
+            0, 0)
 
         // haste modifiers
         val hasteMod: CharacterMod = CharacterMod("haste", false, null,
@@ -136,7 +170,7 @@ class CharacterIka(characterName: String = "I'ka",
             1, 0, 0,
             0, 0, 1,
             0, 0, 0,
-            0)
+            0, 0)
 
         // enlarge modifiers
         val enlargeMod: CharacterMod = CharacterMod("enlarge", false, null,
@@ -148,7 +182,7 @@ class CharacterIka(characterName: String = "I'ka",
             0, -1, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
     }
 
     override fun applyProgression() {
@@ -163,15 +197,17 @@ class CharacterIka(characterName: String = "I'ka",
     override fun getWeaponMods(): ArrayList<CharacterMod> {
         var weapons: ArrayList<CharacterMod> = ArrayList<CharacterMod>()
         weapons.add(cestusMod)
-        weapons.add(gladiusMod)
+        weapons.add(spearMod)
+        weapons.add(scimitarMod)
+        weapons.add(longbowMod)
         weapons.add(grapplingMod)
         return weapons
     }
 
     override fun getArmorMods(): ArrayList<CharacterMod> {
         var armor: ArrayList<CharacterMod> = ArrayList<CharacterMod>()
-        armor.add(chainMod)
-        armor.add(bucklerMod)
+        armor.add(armorMod)
+        armor.add(shieldMod)
         return armor
     }
 

@@ -19,5 +19,6 @@ enum class Stat(val num: Int) {
     RAGE(15),
     NL(16),
     LV1S(17),
-    LV2S(18)
+    LV2S(18),
+    LV3S(19)
 }

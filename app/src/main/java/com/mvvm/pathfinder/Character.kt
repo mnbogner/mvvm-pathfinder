@@ -16,7 +16,7 @@ abstract class Character(val characterName: String,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0)
+            0, 0)
 
         fun getBonus(statVal: Int): Int {
 
@@ -35,7 +35,7 @@ abstract class Character(val characterName: String,
         0, 0, 0,
         0, 0, 0,
         0, 0, 0,
-        0)
+        0, 0)
 
     var acBase: Int = 10
     var cmdBase: Int = 10 // CMB base = BAB
@@ -67,6 +67,7 @@ abstract class Character(val characterName: String,
 
     var spells1Mod: Int = 0
     var spells2Mod: Int = 0
+    var spells3Mod: Int = 0
 
     var dmgNonlethal: Int = 0
     var useBothHands: Int = 0
@@ -76,12 +77,65 @@ abstract class Character(val characterName: String,
 
     fun getBaseStats(): HashMap<Stat, String> {
         var stats: HashMap<Stat, String> = HashMap<Stat, String>()
-        stats.put(Stat.STR, (strBase + strMod).toString() + "/" + tempMod.strMod)
-        stats.put(Stat.DEX, (dexBase + dexMod).toString() + "/" + tempMod.dexMod)
-        stats.put(Stat.CON, (conBase + conMod).toString() + "/" + tempMod.conMod)
-        stats.put(Stat.INT, (intBase + intMod).toString() + "/" + tempMod.intMod)
-        stats.put(Stat.WIS, (wisBase + wisMod).toString() + "/" + tempMod.wisMod)
-        stats.put(Stat.CHR, (chrBase + chrMod).toString() + "/" + tempMod.chrMod)
+
+        var strExtra: String = ""
+        var dexExtra: String = ""
+        var conExtra: String = ""
+        var intExtra: String = ""
+        var wisExtra: String = ""
+        var chrExtra: String = ""
+
+        if (tempMod.strMod != 0) {
+            strExtra = strExtra + "(" + tempMod.strMod + ")"
+        }
+        if (tempMod.dexMod != 0) {
+            dexExtra = dexExtra + "(" + tempMod.dexMod + ")"
+        }
+        if (tempMod.conMod != 0) {
+            conExtra = conExtra + "(" + tempMod.conMod + ")"
+        }
+        if (tempMod.intMod != 0) {
+            intExtra = intExtra + "(" + tempMod.intMod + ")"
+        }
+        if (tempMod.wisMod != 0) {
+            wisExtra = wisExtra + "(" + tempMod.wisMod + ")"
+        }
+        if (tempMod.chrMod != 0) {
+            chrExtra = chrExtra + "(" + tempMod.chrMod + ")"
+        }
+
+        strExtra = strExtra + "/"
+        dexExtra = dexExtra + "/"
+        conExtra = conExtra + "/"
+        intExtra = intExtra + "/"
+        wisExtra = wisExtra + "/"
+        chrExtra = chrExtra + "/"
+
+        if (getBonus(Stat.STR) > 0) {
+            strExtra = strExtra + "+"
+        }
+        if (getBonus(Stat.DEX) > 0) {
+            dexExtra = dexExtra + "+"
+        }
+        if (getBonus(Stat.CON) > 0) {
+            conExtra = conExtra + "+"
+        }
+        if (getBonus(Stat.INT) > 0) {
+            intExtra = intExtra + "+"
+        }
+        if (getBonus(Stat.WIS) > 0) {
+            wisExtra = wisExtra + "+"
+        }
+        if (getBonus(Stat.CHR) > 0) {
+            chrExtra = chrExtra + "+"
+        }
+
+        stats.put(Stat.STR, (strBase + strMod).toString() + strExtra + getBonus(Stat.STR))  // tempMod.strMod)
+        stats.put(Stat.DEX, (dexBase + dexMod).toString() + dexExtra + getBonus(Stat.DEX))  // tempMod.dexMod)
+        stats.put(Stat.CON, (conBase + conMod).toString() + conExtra + getBonus(Stat.CON))  // tempMod.conMod)
+        stats.put(Stat.INT, (intBase + intMod).toString() + intExtra + getBonus(Stat.INT))  // tempMod.intMod)
+        stats.put(Stat.WIS, (wisBase + wisMod).toString() + wisExtra + getBonus(Stat.WIS))  // tempMod.wisMod)
+        stats.put(Stat.CHR, (chrBase + chrMod).toString() + chrExtra + getBonus(Stat.CHR))  // tempMod.chrMod)
         return stats
     }
 
@@ -97,6 +151,11 @@ abstract class Character(val characterName: String,
 
         // calculate hit bonuses
         var hit: Int = bab + hitMod + getBonus(Stat.STR) + acSizMod // size mod seems to apply to hit bonus
+        // TODO: add ranged flag
+        if (mods.contains("longbow")) {
+            System.out.println("FOO - TEMP RANGED HACK (hit)")
+            hit = bab + hitMod + getBonus(Stat.DEX) + acSizMod // size mod seems to apply to hit bonus
+        }
         var hitText: String = "+" + hit.toString()
         if (bab > 5) {
             hitText = hitText + "/+" + (hit - 5).toString()
@@ -104,6 +163,12 @@ abstract class Character(val characterName: String,
 
         // calculate damage bonus
         var dmg: Int = dmgMod + getBonus(Stat.STR)
+        // TODO: add ranged flag
+        if (mods.contains("longbow")) {
+            System.out.println("FOO - TEMP RANGED HACK (dmg)")
+            // IGNORE: got adaptive longbow, uses full strength rating
+            // dmg = dmgMod
+        }
         var dmgText: String = getDamageDice(damageDice).str + "+" + dmg.toString()
 
         // calculate ac / touch ac
@@ -180,6 +245,9 @@ abstract class Character(val characterName: String,
             Stat.LV2S -> {
                 return spells2Mod
             }
+            Stat.LV3S -> {
+                return spells3Mod
+            }
             else -> return 0
         }
     }
@@ -246,6 +314,7 @@ abstract class Character(val characterName: String,
 
             spells1Mod += mod.spells1Mod
             spells2Mod += mod.spells2Mod
+            spells3Mod += mod.spells3Mod
 
             if (mod.twoHands) {
                 useBothHands++
@@ -292,6 +361,7 @@ abstract class Character(val characterName: String,
 
             spells1Mod -= mod.spells1Mod
             spells2Mod -= mod.spells2Mod
+            spells3Mod -= mod.spells3Mod
 
             if (mod.twoHands) {
                 useBothHands--
@@ -361,6 +431,9 @@ abstract class Character(val characterName: String,
             }
             Stat.LV2S -> {
                 spells2Mod = mod
+            }
+            Stat.LV3S -> {
+                spells3Mod = mod
             }
             else -> return
         }

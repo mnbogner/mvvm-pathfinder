@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
             // TODO: fix to pass parcelable character and mods (or just access view model from spell activity?)
             i.putExtra(Stat.LV1S.name, viewModel.getCurrentStat(Stat.LV1S))
             i.putExtra(Stat.LV2S.name, viewModel.getCurrentStat(Stat.LV2S))
+            i.putExtra(Stat.LV3S.name, viewModel.getCurrentStat(Stat.LV3S))
             this.startActivityForResult(i, SPELL_REQUEST)
         }
         feat_button.setOnClickListener {
@@ -201,10 +202,13 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == SPELL_REQUEST) {
             if (resultCode == SpellActivity.SPELL_RESULT && i != null) {
 
-                System.out.println("FOO - RESULT LV1: " + i.getIntExtra(SpellActivity.LV1_RESULT, 0) + ", LV2: " + i.getIntExtra(SpellActivity.LV2_RESULT, 0))
+                System.out.println("FOO - RESULT LV1: " + i.getIntExtra(SpellActivity.LV1_RESULT, 0)
+                        + ", LV2: " + i.getIntExtra(SpellActivity.LV2_RESULT, 0)
+                        + ", LV3: " + i.getIntExtra(SpellActivity.LV3_RESULT, 0))
 
                 viewModel.setStat(Stat.LV1S, i.getIntExtra(SpellActivity.LV1_RESULT, 0))
                 viewModel.setStat(Stat.LV2S, i.getIntExtra(SpellActivity.LV2_RESULT, 0))
+                viewModel.setStat(Stat.LV3S, i.getIntExtra(SpellActivity.LV3_RESULT, 0))
             } else {
                 System.out.println("FOO - WRONG RESULT: " + resultCode)
             }

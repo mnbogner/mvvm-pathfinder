@@ -14,28 +14,32 @@ class SkillActivity : AppCompatActivity() {
 
     // TODO: pull from view model
 
-    // skill ranks: 4 -1 +1 int modifier/finding your kin * lvl = 36
+    // skill ranks: 4 (ranks/lvl) -1 (int modifier) +1 (finding your kin) * 10 (lvl) = 40
     // skipped trained-only skills with no ranks
 
-    val ac_rank: Int = 5 // +2 +3 ranks/class skill
+    val ac_rank: Int = 6 // +3 +3 ranks/class skill
     val ap_rank: Int = 0 // +0 ranks
     val bl_rank: Int = 0 // +0 ranks
     val cl_rank: Int = 5 // +2 +3 ranks/class skill
     val cr_rank: Int = 0 // +0 +0 ranks/class skill(no ranks)
     val dp_rank: Int = 0 // +0 ranks
-    val dd_rank: Int = 6 // +6 ranks
+    val dd_rank: Int = 8 // +8 ranks
     val ds_rank: Int = 0 // +0 ranks
     val ea_rank: Int = 0 // +0 ranks
     val fl_rank: Int = 0 // +0 ranks
     val hl_rank: Int = 0 // +0 ranks
-    val in_rank: Int = 10 // +6 +3 +1 ranks/class skill/bred for war
-    val pc_rank: Int = 11 // +8 +3 ranks/class skill
+    val in_rank: Int = 9 // +5 +3 +1 ranks/class skill/bred for war
+    val pc_rank: Int = 9 // +6 +3 ranks/class skill
     val pf_rank: Int = 0 // +0 ranks
     val rd_rank: Int = 0 // +0 ranks/class skill(no ranks)
     val sm_rank: Int = 0 // +0 ranks
     val st_rank: Int = 8 // +8 ranks
-    val sr_rank: Int = 5 // +2 +3 ranks/class skill
+    val sr_rank: Int = 6 // +3 +3 ranks/class skill
     val sw_rank: Int = 5 // +2 +3 ranks/class skill
+
+    val ln_rank: Int = 1 // +1 ranks
+    val kl_rank: Int = 1 // +1 ranks
+    val kg_rank: Int = 1 // +1 ranks
 
     var st_bonus: Int = 0
     var dx_bonus: Int = 0
@@ -67,6 +71,9 @@ class SkillActivity : AppCompatActivity() {
         fl_val.setText((fl_rank + dx_bonus).toString())
         hl_val.setText((hl_rank + wi_bonus).toString())
         in_val.setText((in_rank + ch_bonus).toString())
+        ln_val.setText((ln_rank + in_bonus).toString())
+        kg_val.setText((kg_rank + in_bonus).toString())
+        kl_val.setText((kl_rank + in_bonus).toString())
         pc_val.setText((pc_rank + wi_bonus).toString())
         pf_val.setText((pf_rank + ch_bonus).toString())
         rd_val.setText((rd_rank + dx_bonus).toString())

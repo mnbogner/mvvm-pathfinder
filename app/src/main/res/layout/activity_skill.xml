@@ -135,6 +135,16 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
+            android:id="@+id/hl_skill"
+            android:layout_width="110dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Heal"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/fl_skill"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
             android:id="@+id/ac_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
@@ -227,11 +237,10 @@
             android:id="@+id/hl_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
-            android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/skills"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+            app:layout_constraintTop_toBottomOf="@id/fl_val"
+            app:layout_constraintStart_toEndOf="@id/hl_skill"/>
 
     <TextView
             android:id="@+id/in_val"
@@ -240,7 +249,37 @@
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/hl_val"
+            app:layout_constraintTop_toBottomOf="@id/skills"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
+            android:id="@+id/ln_val"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="+10"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/in_val"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
+            android:id="@+id/kg_val"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="+10"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/ln_val"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
+            android:id="@+id/kl_val"
+            android:layout_width="30dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="+10"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/kg_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
@@ -250,7 +289,7 @@
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/in_val"
+            app:layout_constraintTop_toBottomOf="@id/kl_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
@@ -314,21 +353,39 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/hl_skill"
-            android:layout_width="120dp"
-            android:layout_height="25dp"
-            android:text="Heal"
-            android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/skills"
-            app:layout_constraintEnd_toStartOf="@id/hl_val"/>
-
-    <TextView
             android:id="@+id/in_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Intimidate"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/hl_skill"
+            app:layout_constraintTop_toBottomOf="@id/skills"
+            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+
+    <TextView
+            android:id="@+id/ln_skill"
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:text="Linguistics"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/in_skill"
+            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+
+    <TextView
+            android:id="@+id/kg_skill"
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:text="Knowledge:Geo"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/ln_skill"
+            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+
+    <TextView
+            android:id="@+id/kl_skill"
+            android:layout_width="120dp"
+            android:layout_height="25dp"
+            android:text="Knowledge:Local"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/kg_skill"
             app:layout_constraintEnd_toStartOf="@id/in_val"/>
 
     <TextView
@@ -337,7 +394,7 @@
             android:layout_height="25dp"
             android:text="Perception"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/in_skill"
+            app:layout_constraintTop_toBottomOf="@id/kl_skill"
             app:layout_constraintEnd_toStartOf="@id/pc_val"/>
 
     <TextView

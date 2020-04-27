@@ -17,11 +17,13 @@ class SpellActivity : AppCompatActivity() {
         val SPELL_RESULT: Int = 200
         val LV1_RESULT: String = "lv1"
         val LV2_RESULT: String = "lv2"
+        val LV3_RESULT: String = "lv3"
 
     }
 
     var lv1Spells: Int = 0
     var lv2Spells: Int = 0
+    var lv3Spells: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +31,11 @@ class SpellActivity : AppCompatActivity() {
 
         lv1Spells = intent.getIntExtra(Stat.LV1S.name, 0)
         lv2Spells = intent.getIntExtra(Stat.LV2S.name, 0)
+        lv3Spells = intent.getIntExtra(Stat.LV3S.name, 0)
 
         lv1_val.setText(lv1Spells.toString())
         lv2_val.setText(lv2Spells.toString())
+        lv3_val.setText(lv3Spells.toString())
 
         lv1_up.setOnClickListener {
             lv1Spells++
@@ -53,6 +57,16 @@ class SpellActivity : AppCompatActivity() {
             lv2_val.setText(lv2Spells.toString())
         }
 
+        lv3_up.setOnClickListener {
+            lv3Spells++
+            lv3_val.setText(lv3Spells.toString())
+        }
+
+        lv3_down.setOnClickListener {
+            lv3Spells--
+            lv3_val.setText(lv3Spells.toString())
+        }
+
         mm_spell.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("A missile of magical energy darts forth from your fingertip and strikes its target, dealing 1d4+1 points of force damage.\n" +
@@ -66,7 +80,7 @@ class SpellActivity : AppCompatActivity() {
             dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
                     dialog, id -> run {
                 dialog.cancel()
-                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/m/magic-missile/")
+                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/m/magic-missile")
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }
@@ -183,6 +197,26 @@ class SpellActivity : AppCompatActivity() {
             message.textSize = 14f
         }
 
+        in_spell.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("The creature or object touched becomes invisible. If the recipient is a creature carrying gear, that vanishes, too. If you cast the spell on someone else, neither you nor your allies can see the subject, unless you can normally see invisible things or you employ magic to do so.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/i/invisibility")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
         aa_spell.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("You gain some of the beneficial qualities of an animal. Your base form is largely unchanged and your size is unaltered, but some of your body parts are altered. Armor or gear you are wearing adjusts to your new shape for the duration of the spell. When you cast animal aspect, choose one of the following animals to gain the associated benefits. You can only have one animal aspect or greater animal aspect spell active on you at a time.")
@@ -192,7 +226,7 @@ class SpellActivity : AppCompatActivity() {
             dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
                     dialog, id -> run {
                 dialog.cancel()
-                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/a/animal-aspect/")
+                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/a/animal-aspect")
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }
@@ -264,15 +298,56 @@ class SpellActivity : AppCompatActivity() {
             var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
             message.textSize = 14f
         }
+
+        vt_spell.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("You must succeed on a melee touch attack. Your touch deals 1d6 points of damage per two caster levels (maximum 10d6). You gain temporary hit points equal to the damage you deal. You can’t gain more than the subject’s current hit points + the subject’s Constitution score (which is enough to kill the subject). The temporary hit points disappear 1 hour later.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/v/vampiric-touch")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
+        dr_spell.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("Draconic reservoir functions as protection from energy, absorbing 6 points of one type of energy damage per caster level (acid, cold, electricity, or fire, maximum 60 points). Each round, as a swift action, the subject can release 1d6 points of the absorbed energy and apply it to any melee attack, as if using an acidic, flaming, frost, or shock weapon.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/d/draconic-reservoir")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
     }
 
     override fun onBackPressed() {
 
-        System.out.println("FOO - FINISH LV1: " + lv1Spells + ", LV2: " + lv2Spells)
+        System.out.println("FOO - FINISH LV1: " + lv1Spells + ", LV2: " + lv2Spells + ", LV3: " + lv3Spells)
 
         val i: Intent = Intent()
         i.putExtra(LV1_RESULT, lv1Spells)
         i.putExtra(LV2_RESULT, lv2Spells)
+        i.putExtra(LV3_RESULT, lv3Spells)
         setResult(SPELL_RESULT, i)
 
         super.onBackPressed()
