@@ -1,10 +1,76 @@
 package com.mvvm.pathfinder
 
-abstract class Character(val characterName: String,
-                     val level: Int, val hpPerLvl: Int, val bab: Int,
-                     val strBase: Int, val dexBase: Int, val conBase: Int,
-                     val intBase: Int, val wisBase: Int, val chrBase: Int,
-                     val fortBase: Int, val refBase: Int, val willBase: Int) {
+abstract class Character {
+
+    var characterName: String
+    var level: Int
+    var hpPerLvl: Int
+    var bab: Int
+    var strBase: Int
+    var dexBase: Int
+    var conBase: Int
+    var intBase: Int
+    var wisBase: Int
+    var chrBase: Int
+    var fortBase: Int
+    var refBase: Int
+    var willBase: Int
+
+    constructor(characterNameArg: String,
+                levelArg: Int, hpPerLvlArg: Int, babArg: Int,
+                strBaseArg: Int, dexBaseArg: Int, conBaseArg: Int,
+                intBaseArg: Int, wisBaseArg: Int, chrBaseArg: Int,
+                fortBaseArg: Int, refBaseArg: Int, willBaseArg: Int) {
+        characterName = characterNameArg
+        level = levelArg
+        hpPerLvl = hpPerLvlArg
+        bab = babArg
+        strBase = strBaseArg
+        dexBase = dexBaseArg
+        conBase = conBaseArg
+        intBase = intBaseArg
+        wisBase = wisBaseArg
+        chrBase = chrBaseArg
+        fortBase = fortBaseArg
+        refBase = refBaseArg
+        willBase = willBaseArg
+        System.out.println("FOO - character argument constructor")
+    }
+
+    constructor() {
+        characterName = "..."
+        level = 0
+        hpPerLvl = 0
+        bab = 0
+        strBase = 0
+        dexBase = 0
+        conBase = 0
+        intBase = 0
+        wisBase = 0
+        chrBase = 0
+        fortBase = 0
+        refBase = 0
+        willBase = 0
+        System.out.println("FOO - character default constructor")
+    }
+
+    /*
+    init {
+        characterName = characterNameArg
+        level = levelArg
+        hpPerLvl = hpPerLvlArg
+        bab = babArg
+        strBase = strBaseArg
+        dexBase = dexBaseArg
+        conBase = conBaseArg
+        intBase = intBaseArg
+        wisBase = wisBaseArg
+        chrBase = chrBaseArg
+        fortBase = fortBaseArg
+        refBase = refBaseArg
+        willBase = willBaseArg
+    }
+    */
 
     companion object {
         val unarmedMod: CharacterMod = CharacterMod("unarmed", false, Dice.D4,
@@ -143,7 +209,7 @@ abstract class Character(val characterName: String,
         var stats: HashMap<Stat, String> = HashMap<Stat, String>()
 
         // calculate hp / nonlethal damage
-        var hp: Int = ((hpPerLvl + hpPerLvlMod + getBonus(Stat.CON)) * level) + hpMod + (hpPerLvl - 2) // hp per level = avg roll, but get max hp for lv1 (1d10 avg = 6 so +4, 1d8 avg = 5 s0 +3, etc)
+        var hp: Int = ((hpPerLvl + hpPerLvlMod + getBonus(Stat.CON)) * level) + hpMod + (hpPerLvl - 2) // hp per level = avg roll, but get max hp for lv1 (1d10 avg = 6 so +4, 1d8 avg = 5 so +3, etc)
         var hpText: String = hp.toString() + "/" + (hp - tempMod.hpMod).toString()
         if (dmgNonlethal > 0) {
             hpText = hpText + "(" + dmgNonlethal + ")"
@@ -206,6 +272,11 @@ abstract class Character(val characterName: String,
         var rage: Int = getBaseRage() + rageMod
         var rageText: String = "RAGE(" + rage + ")"
 
+        // calculate bonus ac from blood armor
+        // currently only blood armor modifies temp ac
+        var blood: Int = tempMod.acMod
+        var bloodText: String = "BLOOD(" + blood + ")"
+
         stats.put(Stat.HP, hpText)
         stats.put(Stat.HIT, hitText)
         stats.put(Stat.DMG, dmgText)
@@ -216,6 +287,7 @@ abstract class Character(val characterName: String,
         stats.put(Stat.REF, refText)
         stats.put(Stat.WILL, willText)
         stats.put(Stat.RAGE, rageText)
+        stats.put(Stat.BLOOD, bloodText)
         return stats
     }
 
@@ -265,9 +337,11 @@ abstract class Character(val characterName: String,
 
     abstract fun getArmorMods(): ArrayList<CharacterMod>
 
+    abstract fun getButtonMods(): ArrayList<ButtonMod>
+
     abstract fun getGrappleMod(): CharacterMod
 
-    abstract fun getPinMod(): CharacterMod
+    // abstract fun getPinMod(): CharacterMod
 
     abstract fun getRagingMod(): CharacterMod
 
@@ -320,8 +394,10 @@ abstract class Character(val characterName: String,
                 useBothHands++
             }
 
-            if (mod.dmgDice != null) {
-                damageDice = mod.dmgDice
+            val localDice : Dice? = mod.dmgDice
+
+            if (localDice != null) {
+                damageDice = localDice
             }
         }
     }
@@ -421,6 +497,19 @@ abstract class Character(val characterName: String,
                 } else {
                     rageMod += mod
                     tempMod.rageMod += mod
+                }
+            }
+            Stat.AC -> {
+                if (mod == 0) {
+                    // hack to reset value
+                    acMod -= tempMod.acMod
+                    tempMod.acMod = 0
+                } else if (tempMod.acMod == 5 ) {
+                    // bonus capped at 5 (max for blood armor spell)
+                    // no-op
+                } else {
+                    acMod += mod
+                    tempMod.acMod += mod
                 }
             }
             Stat.NL -> {

@@ -17,29 +17,30 @@ class SkillActivity : AppCompatActivity() {
     // skill ranks: 4 (ranks/lvl) -1 (int modifier) +1 (finding your kin) * 10 (lvl) = 40
     // skipped trained-only skills with no ranks
 
-    val ac_rank: Int = 6 // +3 +3 ranks/class skill
+    val ac_rank: Int = 4 // +1 +3 ranks/class skill
     val ap_rank: Int = 0 // +0 ranks
     val bl_rank: Int = 0 // +0 ranks
-    val cl_rank: Int = 5 // +2 +3 ranks/class skill
+    val cl_rank: Int = 4 // +1 +3 ranks/class skill
     val cr_rank: Int = 0 // +0 +0 ranks/class skill(no ranks)
     val dp_rank: Int = 0 // +0 ranks
     val dd_rank: Int = 8 // +8 ranks
     val ds_rank: Int = 0 // +0 ranks
     val ea_rank: Int = 0 // +0 ranks
     val fl_rank: Int = 0 // +0 ranks
+    val ha_rank: Int = 3 // +1 +2 ranks/racial bonus
     val hl_rank: Int = 0 // +0 ranks
-    val in_rank: Int = 9 // +5 +3 +1 ranks/class skill/bred for war
-    val pc_rank: Int = 9 // +6 +3 ranks/class skill
+    val in_rank: Int = 8 // +4 +3 +1 ranks/class skill/bred for war
+    val kg_rank: Int = 1 // +1 ranks
+    val kl_rank: Int = 1 // +1 ranks
+    val ln_rank: Int = 1 // +1 ranks
+    val pc_rank: Int = 8 // +5 +3 ranks/class skill
     val pf_rank: Int = 0 // +0 ranks
+    val pr_rank: Int = 5 // +5 ranks
     val rd_rank: Int = 0 // +0 ranks/class skill(no ranks)
     val sm_rank: Int = 0 // +0 ranks
     val st_rank: Int = 8 // +8 ranks
-    val sr_rank: Int = 6 // +3 +3 ranks/class skill
-    val sw_rank: Int = 5 // +2 +3 ranks/class skill
-
-    val ln_rank: Int = 1 // +1 ranks
-    val kl_rank: Int = 1 // +1 ranks
-    val kg_rank: Int = 1 // +1 ranks
+    val sr_rank: Int = 8 // +3 +3 +2 ranks/class skill/racial bonus
+    val sw_rank: Int = 4 // +1 +3 ranks/class skill
 
     var st_bonus: Int = 0
     var dx_bonus: Int = 0
@@ -69,6 +70,7 @@ class SkillActivity : AppCompatActivity() {
         ds_val.setText((ds_rank + ch_bonus).toString())
         ea_val.setText((ea_rank + dx_bonus).toString())
         fl_val.setText((fl_rank + dx_bonus).toString())
+        ha_val.setText((ha_rank + ch_bonus).toString())
         hl_val.setText((hl_rank + wi_bonus).toString())
         in_val.setText((in_rank + ch_bonus).toString())
         ln_val.setText((ln_rank + in_bonus).toString())
@@ -76,6 +78,7 @@ class SkillActivity : AppCompatActivity() {
         kl_val.setText((kl_rank + in_bonus).toString())
         pc_val.setText((pc_rank + wi_bonus).toString())
         pf_val.setText((pf_rank + ch_bonus).toString())
+        pr_val.setText((pr_rank + wi_bonus).toString())
         rd_val.setText((rd_rank + dx_bonus).toString())
         sm_val.setText((sm_rank + wi_bonus).toString())
         st_val.setText((st_rank + dx_bonus).toString())
@@ -282,6 +285,26 @@ class SkillActivity : AppCompatActivity() {
             message.textSize = 14f
         }
 
+        ha_skill.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("You are trained at working with animals, and can teach them tricks, get them to follow your simple commands, or even domesticate them.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/skills/handle-animal")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
         hl_skill.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("You are skilled at tending to the ailments of others.")
@@ -352,6 +375,26 @@ class SkillActivity : AppCompatActivity() {
                     dialog, id -> run {
                 dialog.cancel()
                 val uri = Uri.parse("https://www.d20pfsrd.com/skills/perform")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
+        pr_skill.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("You are skilled at a specific job. Like Craft, Knowledge, and Perform, Profession is actually a number of separate skills. You could have several Profession skills, each with its own ranks.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/skills/profession")
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }

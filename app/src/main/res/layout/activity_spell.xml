@@ -65,11 +65,11 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/bb_spell"
+            android:id="@+id/ih_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
-            android:text="Bloodbath"
+            android:text="Infernal Healing"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/tog_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
@@ -81,15 +81,15 @@
             android:layout_marginLeft="10dp"
             android:text="Barbed Chains"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/bb_spell"
+            app:layout_constraintTop_toBottomOf="@id/ih_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ih_spell"
+            android:id="@+id/we_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
-            android:text="Infernal Healing"
+            android:text="Windy Escape"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/bc_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
@@ -136,7 +136,7 @@
             android:layout_marginTop="10dp"
             android:text="LV2 SPELLS"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ih_spell"
+            app:layout_constraintTop_toBottomOf="@id/we_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
@@ -170,11 +170,11 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/adb_spell"
+            android:id="@+id/ba_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
-            android:text="Adhesive Blood"
+            android:text="Blood Armor"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/toi_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
@@ -186,7 +186,7 @@
             android:layout_marginLeft="10dp"
             android:text="Ablative Barrier"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/adb_spell"
+            app:layout_constraintTop_toBottomOf="@id/ba_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <Button
@@ -198,7 +198,7 @@
             android:text="-"
             android:includeFontPadding="false"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ih_spell"
+            app:layout_constraintTop_toBottomOf="@id/we_spell"
             app:layout_constraintEnd_toEndOf="@id/aa_spell"/>
 
     <Button
@@ -210,7 +210,7 @@
             android:text="+"
             android:includeFontPadding="false"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ih_spell"
+            app:layout_constraintTop_toBottomOf="@id/we_spell"
             app:layout_constraintEnd_toStartOf="@id/lv2_down"/>
 
     <TextView
@@ -221,7 +221,7 @@
             android:text="0"
             android:textAlignment="center"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ih_spell"
+            app:layout_constraintTop_toBottomOf="@id/we_spell"
             app:layout_constraintEnd_toStartOf="@id/lv2_up"/>
 
     <TextView

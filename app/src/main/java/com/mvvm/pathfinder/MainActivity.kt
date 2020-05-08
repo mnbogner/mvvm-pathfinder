@@ -2,6 +2,7 @@ package com.mvvm.pathfinder
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -20,11 +21,28 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: CharacterViewModel
     private lateinit var defaultWeapon: String
 
-    private var grappleToggle: Boolean = false
-    private var pinToggle: Boolean = false
-    private var rageToggle: Boolean = false
-    private var hasteToggle: Boolean = false
-    private var enlargeToggle: Boolean = false
+    // private var grappleToggle: Boolean = false
+    // private var pinToggle: Boolean = false
+    // private var bloodToggle: Boolean = false
+    // private var rageToggle: Boolean = false
+    // private var hasteToggle: Boolean = false
+    // private var enlargeToggle: Boolean = false
+
+    // currently working with a fixed set of buttons
+    private var buttonToggle: Array<Boolean> = Array<Boolean>(5) {i -> false}
+    private var buttonLimit: Array<Int> = Array<Int>(5) {i -> 0}
+    private var buttonValue: Array<Int> = Array<Int>(5) {i -> 0}
+
+    private var buttonOneToggle: Boolean = false;
+    private var buttonTwoToggle: Boolean = false;
+    private var buttonThreeToggle: Boolean = false;
+    private var buttonFourToggle: Boolean = false;
+    private var buttonFiveToggle: Boolean = false;
+    private var buttonOneLimit: Int = 0;
+    private var buttonTwoLimit: Int = 0;
+    private var buttonThreeLimit: Int = 0;
+    private var buttonFourLimit: Int = 0;
+    private var buttonFiveLimit: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +54,10 @@ class MainActivity : AppCompatActivity() {
             defaultWeapon = viewModel.cycleWeapons(defaultWeapon)
             weapon_button.setText(defaultWeapon)
         }
+
+        setupButtons()
+
+        /*
         grapple_button.setText("GRAPPLE(off)")
         grapple_button.setOnClickListener {
             grappleToggle = !grappleToggle
@@ -56,6 +78,23 @@ class MainActivity : AppCompatActivity() {
                 pin_button.setText("PIN(off)")
             }
         }
+        blood_button.setText("BLOOD(off)")
+        blood_button.setOnClickListener {
+            if (bloodToggle) {
+                viewModel.incrementStat(Stat.AC)
+            }
+        }
+        blood_button.setOnLongClickListener {
+            bloodToggle = !bloodToggle
+            if (bloodToggle) {
+                blood_button.setText("BLOOD(?)")
+                viewModel.incrementStat(Stat.AC)
+            } else {
+                blood_button.setText("BLOOD(off)")
+                viewModel.setStat(Stat.AC, 0)
+            }
+            true
+        }
         rage_button.setText("RAGE(off)")
         rage_button.setOnClickListener {
             if (rageToggle) {
@@ -66,6 +105,7 @@ class MainActivity : AppCompatActivity() {
             rageToggle = !rageToggle
             if (rageToggle) {
                 rage_button.setText("RAGE(?)")
+                viewModel.decrementStat(Stat.RAGE)
             } else {
                 rage_button.setText("RAGE(off)")
             }
@@ -92,6 +132,7 @@ class MainActivity : AppCompatActivity() {
                 enlarge_button.setText("ENLARGE(off)")
             }
         }
+        */
 
         skill_button.setOnClickListener {
             val i: Intent = Intent(this, SkillActivity::class.java)
@@ -165,6 +206,120 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun setupButtons() {
+
+        // currently working with a fixed set of buttons
+        var buttons: ArrayList<Button> = ArrayList<Button>()
+        buttons.add(button_one)
+        buttons.add(button_two)
+        buttons.add(button_three)
+        buttons.add(button_four)
+        buttons.add(button_five)
+
+        var buttonMods: ArrayList<ButtonMod> = viewModel.buttonMods
+
+        // fill as many buttons as possible
+        for (i in 0 until 5) {
+            if (buttonMods.get(i) != null) {
+                var button: Button = buttons.get(i)
+                var buttonMod: ButtonMod = buttonMods.get(i)
+
+                button.setText(buttonMod.modName + "(off)")
+
+                // streamline button setup
+                if (buttonMod.longPress) {
+
+                    System.out.println("FOO - set up long press mod " + buttonMod.modName)
+
+                    buttonLimit[i] = buttonMod.limit
+                    if (!buttonMod.increment) {
+                        // if decrementing, start at limit
+                        buttonValue[i] = buttonMod.limit
+                    } else {
+                        // if incrementing, start at 0
+                    }
+
+                    button.setOnClickListener {
+
+                        System.out.println("FOO - on click for " + buttonMod.modName)
+
+                        if (buttonToggle[i]) {
+
+                            System.out.println("FOO - button toggled for " + buttonMod.modName)
+
+                            if (buttonMod.increment) {
+                                System.out.println("FOO - increment for " + buttonMod.modName)
+                                // handle value increment
+                                if (buttonValue[i] == buttonLimit[i]) {
+                                    // if loop flag set, wrap around to 0, else no-op
+                                    if (buttonMod.loop) {
+                                        buttonValue[i] = 0
+                                    }
+                                } else {
+                                    System.out.println("FOO - add 1 for " + buttonMod.modName)
+                                    // if not at limit, increment value
+                                    buttonValue[i]++
+                                }
+                            } else {
+                                System.out.println("FOO - on click decrement for " + buttonMod.modName)
+                                // handle value decrement
+                                if (buttonValue[i] == 0) {
+                                    // if loop flag set, wrap around to max, else no-op
+                                    if (buttonMod.loop) {
+                                        buttonValue[i] = buttonLimit[i]
+                                    }
+                                } else {
+                                    System.out.println("FOO - subtract 1 for " + buttonMod.modName)
+                                    // if not at 0, decrement value
+                                    buttonValue[i]--
+                                }
+                            }
+                            button.setText(buttonMod.modName + "(" + buttonValue[i] + ")")
+                        } else {
+                            System.out.println("FOO - button not toggled for " + buttonMod.modName)
+                        }
+                    }
+
+                    button.setOnLongClickListener {
+
+                        System.out.println("FOO - on long click for " + buttonMod.modName)
+
+                        buttonToggle[i] = !buttonToggle[i]
+                        viewModel.toggleMod(buttonToggle[i], buttonMod)
+                        if (buttonToggle[i]) {
+                            // if value doesn't loop, reset when toggled
+                            if (!buttonMod.loop) {
+                                if (buttonMod.increment) {
+                                    // if incrementing, start at 0
+                                    buttonValue[i] = 0
+                                } else {
+                                    // if decrementing, start at max
+                                    buttonValue[i] = buttonLimit[i]
+                                }
+                            }
+                            button.setText(buttonMod.modName + "(" + buttonValue[i] + ")")
+                        } else {
+                            button.setText(buttonMod.modName + "(off)")
+                        }
+                        true
+                    }
+                } else {
+                    button.setOnClickListener {
+                        buttonToggle[i] = !buttonToggle[i]
+                        viewModel.toggleMod(buttonToggle[i], buttonMod)
+                        if (buttonToggle[i]) {
+                            button.setText(buttonMod.modName + "(on)")
+                        } else {
+                            button.setText(buttonMod.modName + "(off)")
+                        }
+                    }
+                }
+            } else {
+                break
+            }
+        }
+    }
+
     private fun setup() {
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CharacterViewModel::class.java)
@@ -188,9 +343,12 @@ class MainActivity : AppCompatActivity() {
             fort_val.setText(stats.getOrDefault(Stat.FORT, "?"))
             ref_val.setText(stats.getOrDefault(Stat.REF, "?"))
             will_val.setText(stats.getOrDefault(Stat.WILL, "?"))
-            if (rageToggle) {
-                rage_button.setText(stats.getOrDefault(Stat.RAGE, "?"))
-            }
+            // if (bloodToggle) {
+            //     blood_button.setText(stats.getOrDefault(Stat.BLOOD, "?"))
+            // }
+            // if (rageToggle) {
+            //     rage_button.setText(stats.getOrDefault(Stat.RAGE, "?"))
+            // }
         })
 
         defaultWeapon = viewModel.initStats()

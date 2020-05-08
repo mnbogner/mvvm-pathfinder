@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@id/gs_feat"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
-    <TextView
+    <!--TextView
             android:id="@+id/do_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
@@ -94,7 +94,7 @@
             android:text="Dodge"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/feats"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/-->
 
     <TextView
             android:id="@+id/en_feat"
@@ -103,7 +103,7 @@
             android:layout_marginRight="10dp"
             android:text="Enforcer"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/do_feat"
+            app:layout_constraintTop_toBottomOf="@id/feats"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
@@ -167,13 +167,23 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
+            android:id="@+id/db_ability"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Disruptive Bloodrage"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/ab_ability"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
             android:id="@+id/bs_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Blood Sanctuary"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ab_ability"
+            app:layout_constraintTop_toBottomOf="@id/db_ability"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
@@ -197,23 +207,13 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/db_ability"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="10dp"
-            android:text="Disruptive Bloodrage"
-            android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/abilities"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
-
-    <TextView
             android:id="@+id/sc_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Spell Conduit"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/db_ability"
+            app:layout_constraintTop_toBottomOf="@id/abilities"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
@@ -226,12 +226,22 @@
             app:layout_constraintTop_toBottomOf="@id/sc_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
-    <TextView
+    <!--TextView
             android:id="@+id/ig_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Intimidating Glare"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/rg_ability"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/-->
+
+    <TextView
+            android:id="@+id/lft_ability"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="Lesser Fiend Totem"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/rg_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
@@ -243,7 +253,27 @@
             android:layout_marginRight="10dp"
             android:text="Damage Resistance"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ig_ability"
+            app:layout_constraintTop_toBottomOf="@id/lft_ability"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
+            android:id="@+id/cr_ability"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="Celestial Resistance"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/dr_ability"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
+            android:id="@+id/dv_ability"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="Darkvision"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/cr_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

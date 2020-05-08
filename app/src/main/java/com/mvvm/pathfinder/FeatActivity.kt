@@ -116,6 +116,7 @@ class FeatActivity : AppCompatActivity() {
             message.textSize = 14f
         }
 
+        /*
         do_feat.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("You gain a +1 dodge bonus to your AC. A condition that makes you lose your Dex bonus to AC also makes you lose the benefits of this feat.")
@@ -135,6 +136,7 @@ class FeatActivity : AppCompatActivity() {
             var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
             message.textSize = 14f
         }
+        */
 
         en_feat.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
@@ -377,6 +379,7 @@ class FeatActivity : AppCompatActivity() {
             message.textSize = 14f
         }
 
+        /*
         ig_ability.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("The barbarian can make an Intimidate check against one adjacent foe as a move action. If the barbarian successfully demoralizes her opponent, the foe is shaken for 1d4 rounds + 1 round for every 5 points by which the barbarian’s check exceeds the DC.")
@@ -387,6 +390,27 @@ class FeatActivity : AppCompatActivity() {
                     dialog, id -> run {
                 dialog.cancel()
                 val uri = Uri.parse("https://www.d20pfsrd.com/classes/core-classes/barbarian/rage-powers/paizo-rage-powers/intimidating-glare-ex")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+        */
+
+        lft_ability.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("While raging, the barbarian grows a pair of large horns, gaining a gore attack. This attack is a primary attack (unless she is also attacking with weapons, in which case it is a secondary attack) and is made at the barbarian’s full base attack bonus (–5 if it is a secondary attack). The gore attack deals 1d8 points of piercing damage (1d6 if Small) plus the barbarian’s Strength modifier (1/2 if it is a secondary attack).")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/classes/core-classes/barbarian/rage-powers/paizo-rage-powers/fiend-totem-lesser-su/")
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }
@@ -407,6 +431,46 @@ class FeatActivity : AppCompatActivity() {
                     dialog, id -> run {
                 dialog.cancel()
                 val uri = Uri.parse("https://www.d20pfsrd.com/classes/hybrid-classes/Bloodrager/#Damage_Reduction_Ex")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
+        cr_ability.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("Aasimars have acid resistance 5, cold resistance 5, and electricity resistance 5.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/gamemastering/special-abilities#TOC-Energy-Resistance")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
+        dv_ability.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("Aasimar have darkvision 60 ft. (they can see perfectly in the dark up to 60 feet.)")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/gamemastering/special-abilities#TOC-Darkvision")
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }

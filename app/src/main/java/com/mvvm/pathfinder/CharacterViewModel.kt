@@ -1,5 +1,6 @@
 package com.mvvm.pathfinder
 
+import android.widget.Button
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -10,8 +11,9 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
 
     val weaponMods: ArrayList<CharacterMod> = character.getWeaponMods()
     val armorMods: ArrayList<CharacterMod> = character.getArmorMods()
+    val buttonMods: ArrayList<ButtonMod> = character.getButtonMods()
     val grappleMod: CharacterMod = character.getGrappleMod()
-    val pinMod: CharacterMod = character.getPinMod()
+    // val pinMod: CharacterMod = character.getPinMod()
     val ragingMod: CharacterMod = character.getRagingMod()
     val hasteMod: CharacterMod = character.getHasteMod()
     val enlargeMod: CharacterMod = character.getEnlargeMod()
@@ -66,6 +68,7 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
         updateStats()
     }
 
+    // this doesn't actually set the stat, it adds the mod value to the stat
     fun setStat(stat: Stat, mod: Int) {
         character.adjustMod(stat, mod)
         updateStats()
@@ -96,6 +99,15 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
         return newWeapon.modName
     }
 
+    fun toggleMod(toggle: Boolean, mod: CharacterMod) {
+        if (toggle) {
+            character.addMod(mod)
+        } else {
+            character.removeMod(mod)
+        }
+        updateStats()
+    }
+
     fun toggleGrapple(toggle: Boolean) {
         if (toggle) {
             character.addMod(grappleMod)
@@ -105,6 +117,7 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
         updateStats()
     }
 
+    /*
     fun togglePin(toggle: Boolean) {
         if (toggle) {
             character.addMod(pinMod)
@@ -113,6 +126,7 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
         }
         updateStats()
     }
+    */
 
     fun toggleRage(toggle: Boolean) {
         if (toggle) {

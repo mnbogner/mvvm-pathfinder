@@ -137,6 +137,7 @@ class SpellActivity : AppCompatActivity() {
             message.textSize = 14f
         }
 
+        /*
         bb_spell.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("You cut yourself with the dagger, dealing yourself 1d6 points of bleed damage. So long as you keep taking this bleed damage, your targets each bleed for 1d6 points of damage at the beginning of their turns. The bleed damage on any target ends if that target receives magical healing, or if your bleed damage ends for any reason. This spell has no effect if you’re immune to bleed damage or can otherwise reduce or ignore the bleed damage to yourself.")
@@ -156,6 +157,7 @@ class SpellActivity : AppCompatActivity() {
             var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
             message.textSize = 14f
         }
+        */
 
         bc_spell.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
@@ -187,6 +189,26 @@ class SpellActivity : AppCompatActivity() {
                     dialog, id -> run {
                 dialog.cancel()
                 val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/i/infernal-healing")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+
+        we_spell.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("You respond to an attack by briefly becoming vaporous and insubstantial, allowing the attack to pass harmlessly through you. You gain DR 10/magic against this attack and are immune to any poison, sneak attacks, or critical hit effect from that attack.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/w/windy-escape")
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }
@@ -259,6 +281,7 @@ class SpellActivity : AppCompatActivity() {
             message.textSize = 14f
         }
 
+        /*
         adb_spell.setOnClickListener {
             var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
             dialog.setMessage("Your blood thickens to becomes a glue-like substance upon contact with air. A piercing or slashing weapon that deals hit point damage to you is stuck fast unless the wielder succeeds at a Reflex save. A creature can pry off a stuck weapon on its turn as a standard action with a successful Strength check against the spell’s DC. Strong alcohol or universal solvent dissolves the adhesive. The glue breaks down 5 rounds after you die, or when the duration ends. ")
@@ -269,6 +292,27 @@ class SpellActivity : AppCompatActivity() {
                     dialog, id -> run {
                 dialog.cancel()
                 val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/a/adhesive-blood")
+                val i = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(i)
+            }
+            })
+            dialog.show()
+
+            var message: TextView = dialog.getWindow().findViewById(android.R.id.message) as TextView
+            message.textSize = 14f
+        }
+        */
+
+        ba_spell.setOnClickListener {
+            var dialog = AlertDialog.Builder(ContextThemeWrapper(this, R.style.AppTheme)).create()
+            dialog.setMessage("Your blood becomes as hard as iron upon contact with air. Each time you take at least 5 points of piercing or slashing damage, your armor gains a +1 enhancement bonus to your AC. This enhancement bonus stacks with itself, but not with an existing enhancement bonus, to a maximum enhancement bonus of +5.")
+            dialog.setButton(AlertDialog.BUTTON_POSITIVE, "CLOSE", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            dialog.setButton(AlertDialog.BUTTON_NEGATIVE, "LINK", DialogInterface.OnClickListener {
+                    dialog, id -> run {
+                dialog.cancel()
+                val uri = Uri.parse("https://www.d20pfsrd.com/magic/all-spells/b/blood-armor")
                 val i = Intent(Intent.ACTION_VIEW, uri)
                 startActivity(i)
             }
