@@ -24,8 +24,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 5+1+1+3=9 feats: 1/3/5/7/9 + human + archetype + bloodline(6/9) -->
-
     <TextView
             android:id="@+id/feats"
             android:layout_width="wrap_content"
@@ -37,7 +35,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/cc_feat"
+            android:id="@+id/lc1_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
@@ -47,57 +45,47 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ig_feat"
+            android:id="@+id/lc2_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Improved Grapple"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/cc_feat"
+            app:layout_constraintTop_toBottomOf="@id/lc1_feat"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/gg_feat"
+            android:id="@+id/lc3_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Greater Grapple"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ig_feat"
+            app:layout_constraintTop_toBottomOf="@id/lc2_feat"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/gs_feat"
+            android:id="@+id/lc4_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Grabbing Style"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/gg_feat"
+            app:layout_constraintTop_toBottomOf="@id/lc3_feat"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/bs_feat"
+            android:id="@+id/lc5_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Body Shield"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/gs_feat"
+            app:layout_constraintTop_toBottomOf="@id/lc4_feat"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
-    <!--TextView
-            android:id="@+id/do_feat"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="10dp"
-            android:text="Dodge"
-            android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/feats"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/-->
-
     <TextView
-            android:id="@+id/en_feat"
+            android:id="@+id/rc1_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
@@ -107,33 +95,43 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/di_feat"
+            android:id="@+id/rc2_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Disruptive"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/en_feat"
+            app:layout_constraintTop_toBottomOf="@id/rc1_feat"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/cr_feat"
+            android:id="@+id/rc3_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Combat Reflexes"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/di_feat"
+            app:layout_constraintTop_toBottomOf="@id/rc2_feat"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/co_feat"
+            android:id="@+id/rc4_feat"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Compression"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/cr_feat"
+            app:layout_constraintTop_toBottomOf="@id/rc3_feat"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
+            android:id="@+id/rc5_feat"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="Combat Reflexes"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/rc4_feat"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
@@ -143,11 +141,11 @@
             android:layout_marginTop="10dp"
             android:text="ABILITIES"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/bs_feat"
+            app:layout_constraintTop_toBottomOf="@id/rc5_feat"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/br_ability"
+            android:id="@+id/lc1_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
@@ -157,57 +155,67 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ab_ability"
+            android:id="@+id/lc2_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Arcane Bloodrage"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/br_ability"
+            app:layout_constraintTop_toBottomOf="@id/lc1_ability"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/db_ability"
+            android:id="@+id/lc3_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Disruptive Bloodrage"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ab_ability"
+            app:layout_constraintTop_toBottomOf="@id/lc2_ability"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/bs_ability"
+            android:id="@+id/lc4_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Blood Sanctuary"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/db_ability"
+            app:layout_constraintTop_toBottomOf="@id/lc3_ability"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/bc_ability"
+            android:id="@+id/lc5_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Blood Casting"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/bs_ability"
+            app:layout_constraintTop_toBottomOf="@id/lc4_ability"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/em_ability"
+            android:id="@+id/lc6_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Eschew Materials"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/bc_ability"
+            app:layout_constraintTop_toBottomOf="@id/lc5_ability"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/sc_ability"
+            android:id="@+id/lc7_ability"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Eschew Materials"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lc6_ability"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/rc1_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
@@ -217,63 +225,63 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/rg_ability"
+            android:id="@+id/rc2_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Raging Grappler"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/sc_ability"
+            app:layout_constraintTop_toBottomOf="@id/rc1_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
-    <!--TextView
-            android:id="@+id/ig_ability"
-            android:layout_width="150dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="10dp"
-            android:text="Intimidating Glare"
-            android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/rg_ability"
-            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/-->
-
     <TextView
-            android:id="@+id/lft_ability"
+            android:id="@+id/rc3_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Lesser Fiend Totem"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/rg_ability"
+            app:layout_constraintTop_toBottomOf="@id/rc2_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/dr_ability"
+            android:id="@+id/rc4_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Damage Resistance"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/lft_ability"
+            app:layout_constraintTop_toBottomOf="@id/rc3_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/cr_ability"
+            android:id="@+id/rc5_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Celestial Resistance"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/dr_ability"
+            app:layout_constraintTop_toBottomOf="@id/rc4_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/dv_ability"
+            android:id="@+id/rc6_ability"
             android:layout_width="150dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="Darkvision"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/cr_ability"
+            app:layout_constraintTop_toBottomOf="@id/rc5_ability"
+            app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
+
+    <TextView
+            android:id="@+id/rc7_ability"
+            android:layout_width="150dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:text="Darkvision"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/rc6_ability"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

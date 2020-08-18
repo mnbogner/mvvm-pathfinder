@@ -1,6 +1,5 @@
 package com.mvvm.pathfinder
 
-import android.widget.Button
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -8,44 +7,28 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
 
     val baseStats: MutableLiveData<HashMap<Stat, String>> = MutableLiveData<HashMap<Stat, String>>()
     val derivedStats: MutableLiveData<HashMap<Stat, String>> = MutableLiveData<HashMap<Stat, String>>()
-
     val weaponMods: ArrayList<CharacterMod> = character.getWeaponMods()
     val armorMods: ArrayList<CharacterMod> = character.getArmorMods()
     val buttonMods: ArrayList<ButtonMod> = character.getButtonMods()
-    val grappleMod: CharacterMod = character.getGrappleMod()
-    // val pinMod: CharacterMod = character.getPinMod()
-    val ragingMod: CharacterMod = character.getRagingMod()
-    val hasteMod: CharacterMod = character.getHasteMod()
-    val enlargeMod: CharacterMod = character.getEnlargeMod()
 
     fun initStats(): String {
-
         var defaultWeapon: CharacterMod = Character.unarmedMod
 
         // level up
         character.applyProgression()
 
-        // equip gear
+        // equip default weapon
         if (weaponMods.isNotEmpty()) {
             defaultWeapon = weaponMods.get(0)
             character.addMod(defaultWeapon)
         }
 
+        // equip all armor
         for (armor in armorMods) {
             character.addMod(armor)
         }
 
         updateStats()
-
-        /*
-        if (baseStats.value == null) {
-            baseStats.value = character.getBaseStats()
-        }
-        if (derivedStats.value == null) {
-            derivedStats.value = character.getDerivedStats()
-        }
-        */
-
         return defaultWeapon.modName
     }
 
@@ -80,7 +63,6 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
         var newWeapon: CharacterMod = Character.unarmedMod
 
         var i: Int = 0
-
         for (weapon in weaponMods) {
             if (weapon.modName == currentWeapon) {
                 oldWeapon = weapon
@@ -104,53 +86,6 @@ class CharacterViewModel(private val character: Character) : ViewModel() {
             character.addMod(mod)
         } else {
             character.removeMod(mod)
-        }
-        updateStats()
-    }
-
-    fun toggleGrapple(toggle: Boolean) {
-        if (toggle) {
-            character.addMod(grappleMod)
-        } else {
-            character.removeMod(grappleMod)
-        }
-        updateStats()
-    }
-
-    /*
-    fun togglePin(toggle: Boolean) {
-        if (toggle) {
-            character.addMod(pinMod)
-        } else {
-            character.removeMod(pinMod)
-        }
-        updateStats()
-    }
-    */
-
-    fun toggleRage(toggle: Boolean) {
-        if (toggle) {
-            character.addMod(ragingMod)
-        } else {
-            character.removeMod(ragingMod)
-        }
-        updateStats()
-    }
-
-    fun toggleHaste(toggle: Boolean) {
-        if (toggle) {
-            character.addMod(hasteMod)
-        } else {
-            character.removeMod(hasteMod)
-        }
-        updateStats()
-    }
-
-    fun toggleEnlarge(toggle: Boolean) {
-        if (toggle) {
-            character.addMod(enlargeMod)
-        } else {
-            character.removeMod(enlargeMod)
         }
         updateStats()
     }

@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/mm_spell"
+            android:id="@+id/lv1_1_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
@@ -45,53 +45,53 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ep_spell"
+            android:id="@+id/lv1_2_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Enlarge Person"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/mm_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv1_1_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/tog_spell"
+            android:id="@+id/lv1_3_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Touch of Gracelessness"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ep_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv1_2_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ih_spell"
+            android:id="@+id/lv1_4_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Infernal Healing"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/tog_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv1_3_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/bc_spell"
+            android:id="@+id/lv1_5_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Barbed Chains"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ih_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv1_4_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/we_spell"
+            android:id="@+id/lv1_6_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Windy Escape"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/bc_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv1_5_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <Button
@@ -104,7 +104,7 @@
             android:includeFontPadding="false"
             android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/mm_spell"/>
+            app:layout_constraintEnd_toEndOf="@id/lv1_6_spell"/>
 
     <Button
             android:id="@+id/lv1_up"
@@ -136,11 +136,11 @@
             android:layout_marginTop="10dp"
             android:text="LV2 SPELLS"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/we_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv1_6_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/in_spell"
+            android:id="@+id/lv2_1_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
@@ -150,43 +150,53 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/aa_spell"
+            android:id="@+id/lv2_2_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Animal Aspect"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/in_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv2_1_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/toi_spell"
+            android:id="@+id/lv2_3_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Touch of Idiocy"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/aa_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv2_2_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ba_spell"
+            android:id="@+id/lv2_4_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Blood Armor"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/toi_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv2_3_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ab_spell"
+            android:id="@+id/lv2_5_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Ablative Barrier"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ba_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv2_4_spell"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/lv2_6_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Ablative Barrier"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lv2_5_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <Button
@@ -194,34 +204,34 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:minHeight="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="19dp"
             android:text="-"
             android:includeFontPadding="false"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/we_spell"
-            app:layout_constraintEnd_toEndOf="@id/aa_spell"/>
+            app:layout_constraintBottom_toBottomOf="@id/lv2_1_spell"
+            app:layout_constraintEnd_toEndOf="@id/lv1_down"/>
 
     <Button
             android:id="@+id/lv2_up"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:minHeight="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="19dp"
             android:text="+"
             android:includeFontPadding="false"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/we_spell"
+            app:layout_constraintBottom_toBottomOf="@id/lv2_1_spell"
             app:layout_constraintEnd_toStartOf="@id/lv2_down"/>
 
     <TextView
             android:id="@+id/lv2_val"
             android:layout_width="40dp"
             android:layout_height="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"
             android:text="0"
             android:textAlignment="center"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/we_spell"
+            app:layout_constraintBottom_toBottomOf="@id/lv2_1_spell"
             app:layout_constraintEnd_toStartOf="@id/lv2_up"/>
 
     <TextView
@@ -231,11 +241,11 @@
             android:layout_marginTop="10dp"
             android:text="LV3 SPELLS"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ab_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv2_6_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/vt_spell"
+            android:id="@+id/lv3_1_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
@@ -245,13 +255,53 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/dr_spell"
+            android:id="@+id/lv3_2_spell"
             android:layout_width="300dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Draconic Reservoir"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/vt_spell"
+            app:layout_constraintTop_toBottomOf="@id/lv3_1_spell"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/lv3_3_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Draconic Reservoir"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lv3_2_spell"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/lv3_4_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Draconic Reservoir"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lv3_3_spell"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/lv3_5_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Draconic Reservoir"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lv3_4_spell"
+            app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
+
+    <TextView
+            android:id="@+id/lv3_6_spell"
+            android:layout_width="300dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:text="Draconic Reservoir"
+            android:gravity="start"
+            app:layout_constraintTop_toBottomOf="@id/lv3_5_spell"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <Button
@@ -259,34 +309,34 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:minHeight="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="19dp"
             android:text="-"
             android:includeFontPadding="false"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ab_spell"
-            app:layout_constraintEnd_toEndOf="@id/aa_spell"/>
+            app:layout_constraintBottom_toBottomOf="@id/lv3_1_spell"
+            app:layout_constraintEnd_toEndOf="@id/lv2_down"/>
 
     <Button
             android:id="@+id/lv3_up"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:minHeight="0dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginBottom="19dp"
             android:text="+"
             android:includeFontPadding="false"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ab_spell"
+            app:layout_constraintBottom_toBottomOf="@id/lv3_1_spell"
             app:layout_constraintEnd_toStartOf="@id/lv3_down"/>
 
     <TextView
             android:id="@+id/lv3_val"
             android:layout_width="40dp"
             android:layout_height="25dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"
             android:text="0"
             android:textAlignment="center"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/ab_spell"
+            app:layout_constraintBottom_toBottomOf="@id/lv3_1_spell"
             app:layout_constraintEnd_toStartOf="@id/lv3_up"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

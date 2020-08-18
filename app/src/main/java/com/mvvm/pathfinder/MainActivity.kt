@@ -11,38 +11,17 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     companion object {
-
         val SPELL_REQUEST: Int = 100
-
     }
 
-    private val viewModelFactory = CharacterInjector.getCharacterFactoryIka()
-
+    private lateinit var viewModelFactory: CharacterFactory
     private lateinit var viewModel: CharacterViewModel
     private lateinit var defaultWeapon: String
-
-    // private var grappleToggle: Boolean = false
-    // private var pinToggle: Boolean = false
-    // private var bloodToggle: Boolean = false
-    // private var rageToggle: Boolean = false
-    // private var hasteToggle: Boolean = false
-    // private var enlargeToggle: Boolean = false
 
     // currently working with a fixed set of buttons
     private var buttonToggle: Array<Boolean> = Array<Boolean>(5) {i -> false}
     private var buttonLimit: Array<Int> = Array<Int>(5) {i -> 0}
     private var buttonValue: Array<Int> = Array<Int>(5) {i -> 0}
-
-    private var buttonOneToggle: Boolean = false;
-    private var buttonTwoToggle: Boolean = false;
-    private var buttonThreeToggle: Boolean = false;
-    private var buttonFourToggle: Boolean = false;
-    private var buttonFiveToggle: Boolean = false;
-    private var buttonOneLimit: Int = 0;
-    private var buttonTwoLimit: Int = 0;
-    private var buttonThreeLimit: Int = 0;
-    private var buttonFourLimit: Int = 0;
-    private var buttonFiveLimit: Int = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,83 +35,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupButtons()
-
-        /*
-        grapple_button.setText("GRAPPLE(off)")
-        grapple_button.setOnClickListener {
-            grappleToggle = !grappleToggle
-            viewModel.toggleGrapple(grappleToggle)
-            if (grappleToggle) {
-                grapple_button.setText("GRAPPLE(on)")
-            } else {
-                grapple_button.setText("GRAPPLE(off)")
-            }
-        }
-        pin_button.setText("PIN(off)")
-        pin_button.setOnClickListener {
-            pinToggle = !pinToggle
-            viewModel.togglePin(pinToggle)
-            if (pinToggle) {
-                pin_button.setText("PIN(on)")
-            } else {
-                pin_button.setText("PIN(off)")
-            }
-        }
-        blood_button.setText("BLOOD(off)")
-        blood_button.setOnClickListener {
-            if (bloodToggle) {
-                viewModel.incrementStat(Stat.AC)
-            }
-        }
-        blood_button.setOnLongClickListener {
-            bloodToggle = !bloodToggle
-            if (bloodToggle) {
-                blood_button.setText("BLOOD(?)")
-                viewModel.incrementStat(Stat.AC)
-            } else {
-                blood_button.setText("BLOOD(off)")
-                viewModel.setStat(Stat.AC, 0)
-            }
-            true
-        }
-        rage_button.setText("RAGE(off)")
-        rage_button.setOnClickListener {
-            if (rageToggle) {
-                viewModel.decrementStat(Stat.RAGE)
-            }
-        }
-        rage_button.setOnLongClickListener {
-            rageToggle = !rageToggle
-            if (rageToggle) {
-                rage_button.setText("RAGE(?)")
-                viewModel.decrementStat(Stat.RAGE)
-            } else {
-                rage_button.setText("RAGE(off)")
-            }
-            viewModel.toggleRage(rageToggle)
-            true
-        }
-        haste_button.setText("HASTE(off)")
-        haste_button.setOnClickListener {
-            hasteToggle = !hasteToggle
-            viewModel.toggleHaste(hasteToggle)
-            if (hasteToggle) {
-                haste_button.setText("HASTE(on)")
-            } else {
-                haste_button.setText("HASTE(off)")
-            }
-        }
-        enlarge_button.setText("ENLARGE(off)")
-        enlarge_button.setOnClickListener {
-            enlargeToggle = !enlargeToggle
-            viewModel.toggleEnlarge(enlargeToggle)
-            if (enlargeToggle) {
-                enlarge_button.setText("ENLARGE(on)")
-            } else {
-                enlarge_button.setText("ENLARGE(off)")
-            }
-        }
-        */
 
         skill_button.setOnClickListener {
             val i: Intent = Intent(this, SkillActivity::class.java)
@@ -203,7 +105,6 @@ class MainActivity : AppCompatActivity() {
         nonlethal_down.setOnClickListener {
             viewModel.incrementStat(Stat.NL)
         }
-
     }
 
     private fun setupButtons() {
@@ -220,7 +121,7 @@ class MainActivity : AppCompatActivity() {
 
         // fill as many buttons as possible
         for (i in 0 until 5) {
-            if (buttonMods.get(i) != null) {
+            if (i < buttonMods.size) {
                 var button: Button = buttons.get(i)
                 var buttonMod: ButtonMod = buttonMods.get(i)
 
@@ -322,8 +223,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun setup() {
 
+        viewModelFactory = CharacterInjector.loadJsonCharacter("ika.json", this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CharacterViewModel::class.java)
-
         viewModel.baseStats.observe(this, Observer { stats ->
             st_val.setText(stats.getOrDefault(Stat.STR, "?"))
             dx_val.setText(stats.getOrDefault(Stat.DEX, "?"))
@@ -343,16 +244,9 @@ class MainActivity : AppCompatActivity() {
             fort_val.setText(stats.getOrDefault(Stat.FORT, "?"))
             ref_val.setText(stats.getOrDefault(Stat.REF, "?"))
             will_val.setText(stats.getOrDefault(Stat.WILL, "?"))
-            // if (bloodToggle) {
-            //     blood_button.setText(stats.getOrDefault(Stat.BLOOD, "?"))
-            // }
-            // if (rageToggle) {
-            //     rage_button.setText(stats.getOrDefault(Stat.RAGE, "?"))
-            // }
         })
 
         defaultWeapon = viewModel.initStats()
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, i: Intent?) {

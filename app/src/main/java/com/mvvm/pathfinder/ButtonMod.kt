@@ -1,7 +1,6 @@
 package com.mvvm.pathfinder
 
 import android.os.Parcel
-import android.os.Parcelable
 
 class ButtonMod : CharacterMod  {
 
@@ -18,14 +17,14 @@ class ButtonMod : CharacterMod  {
                 acShiModArg: Int, acDefModArg: Int, acNatModArg: Int,
                 acDodModArg: Int, acSizModArg: Int, cmbModArg: Int,
                 cmdModArg: Int, fortModArg: Int, refModArg: Int,
-                willModArg: Int, rageModArg: Int, spells1ModArg: Int,
+                willModArg: Int, spells1ModArg: Int,
                 spells2ModArg: Int, spells3ModArg: Int, longPressArg: Boolean,
                 incrementArg: Boolean, loopArg: Boolean, limitArg: Int):super(
         modNameArg, twoHandsArg, dmgDiceArg, hpModArg, hpPerLvlModArg, strModArg,
         dexModArg, conModArg, intModArg, wisModArg, chrModArg, hitModArg,
         dmgModArg, acModArg, acArmModArg, acShiModArg, acDefModArg, acNatModArg,
         acDodModArg, acSizModArg, cmbModArg, cmdModArg, fortModArg, refModArg,
-        willModArg, rageModArg, spells1ModArg, spells2ModArg, spells3ModArg) {
+        willModArg, spells1ModArg, spells2ModArg, spells3ModArg) {
         longPress = longPressArg
         increment = incrementArg
         loop = loopArg
@@ -64,7 +63,5 @@ class ButtonMod : CharacterMod  {
             parcel.writeInt(0)
         }
         parcel.writeInt(limit)
-
     }
-
 }

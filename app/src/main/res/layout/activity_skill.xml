@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ac_skill"
+            android:id="@+id/lc1_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
@@ -45,224 +45,224 @@
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ap_skill"
+            android:id="@+id/lc2_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Appraise"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ac_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc1_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/bl_skill"
+            android:id="@+id/lc3_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Bluff"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ap_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc2_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/cl_skill"
+            android:id="@+id/lc4_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Climb"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/bl_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc3_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/cr_skill"
+            android:id="@+id/lc5_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Craft"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/cl_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc4_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/dp_skill"
+            android:id="@+id/lc6_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Diplomacy"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/cr_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc5_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/dd_skill"
+            android:id="@+id/lc7_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Disable Device"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/dp_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc6_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ds_skill"
+            android:id="@+id/lc8_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Disguise"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/dd_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc7_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ea_skill"
+            android:id="@+id/lc9_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Escape Artist"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ds_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc8_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/fl_skill"
+            android:id="@+id/lc10_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Fly"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ea_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc9_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ha_skill"
+            android:id="@+id/lc11_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Handle Animal"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/fl_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc10_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/hl_skill"
+            android:id="@+id/lc12_skill"
             android:layout_width="110dp"
             android:layout_height="25dp"
             android:layout_marginLeft="10dp"
             android:text="Heal"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ha_skill"
+            app:layout_constraintTop_toBottomOf="@id/lc11_skill"
             app:layout_constraintStart_toStartOf="@id/guidelineLeft"/>
 
     <TextView
-            android:id="@+id/ac_val"
+            android:id="@+id/lc1_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/skills"
-            app:layout_constraintStart_toEndOf="@id/ac_skill"/>
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/ap_val"
+            android:id="@+id/lc2_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ac_val"
-            app:layout_constraintStart_toEndOf="@id/ap_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc1_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/bl_val"
+            android:id="@+id/lc3_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ap_val"
-            app:layout_constraintStart_toEndOf="@id/bl_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc2_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
     <TextView
-            android:id="@+id/cl_val"
+            android:id="@+id/lc4_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/bl_val"
-            app:layout_constraintStart_toEndOf="@id/cl_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc3_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/cr_val"
+            android:id="@+id/lc5_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/cl_val"
-            app:layout_constraintStart_toEndOf="@id/cr_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc4_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/dp_val"
+            android:id="@+id/lc6_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/cr_val"
-            app:layout_constraintStart_toEndOf="@id/dp_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc5_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/dd_val"
+            android:id="@+id/lc7_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/dp_val"
-            app:layout_constraintStart_toEndOf="@id/dd_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc6_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/ds_val"
+            android:id="@+id/lc8_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/dd_val"
-            app:layout_constraintStart_toEndOf="@id/ds_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc7_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/ea_val"
+            android:id="@+id/lc9_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ds_val"
-            app:layout_constraintStart_toEndOf="@id/ea_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc8_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/fl_val"
+            android:id="@+id/lc10_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ea_val"
-            app:layout_constraintStart_toEndOf="@id/fl_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc9_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/ha_val"
+            android:id="@+id/lc11_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/fl_val"
-            app:layout_constraintStart_toEndOf="@id/ha_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc10_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/hl_val"
+            android:id="@+id/lc12_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ha_val"
-            app:layout_constraintStart_toEndOf="@id/hl_skill"/>
+            app:layout_constraintTop_toBottomOf="@id/lc11_val"
+            app:layout_constraintStart_toEndOf="@id/lc1_skill"/>
 
     <TextView
-            android:id="@+id/in_val"
+            android:id="@+id/rc1_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
@@ -272,221 +272,221 @@
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/ln_val"
+            android:id="@+id/rc2_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/in_val"
+            app:layout_constraintTop_toBottomOf="@id/rc1_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/kg_val"
+            android:id="@+id/rc3_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ln_val"
+            app:layout_constraintTop_toBottomOf="@id/rc2_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/kl_val"
+            android:id="@+id/rc4_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/kg_val"
+            app:layout_constraintTop_toBottomOf="@id/rc3_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/pc_val"
+            android:id="@+id/rc5_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/kl_val"
+            app:layout_constraintTop_toBottomOf="@id/rc4_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/pf_val"
+            android:id="@+id/rc6_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/pc_val"
+            app:layout_constraintTop_toBottomOf="@id/rc5_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/pr_val"
+            android:id="@+id/rc7_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/pf_val"
+            app:layout_constraintTop_toBottomOf="@id/rc6_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/rd_val"
+            android:id="@+id/rc8_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/pr_val"
+            app:layout_constraintTop_toBottomOf="@id/rc7_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/sm_val"
+            android:id="@+id/rc9_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/rd_val"
+            app:layout_constraintTop_toBottomOf="@id/rc8_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/st_val"
+            android:id="@+id/rc10_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/sm_val"
+            app:layout_constraintTop_toBottomOf="@id/rc9_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/sr_val"
+            android:id="@+id/rc11_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/st_val"
+            app:layout_constraintTop_toBottomOf="@id/rc10_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/sw_val"
+            android:id="@+id/rc12_val"
             android:layout_width="30dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
             android:text="+10"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/sr_val"
+            app:layout_constraintTop_toBottomOf="@id/rc11_val"
             app:layout_constraintEnd_toEndOf="@id/guidelineRight"/>
 
     <TextView
-            android:id="@+id/in_skill"
+            android:id="@+id/rc1_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Intimidate"
             android:gravity="start"
             app:layout_constraintTop_toBottomOf="@id/skills"
-            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/ln_skill"
+            android:id="@+id/rc2_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Linguistics"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/in_skill"
-            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc1_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/kg_skill"
+            android:id="@+id/rc3_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Knowledge:Geo"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/ln_skill"
-            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc2_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/kl_skill"
+            android:id="@+id/rc4_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Knowledge:Local"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/kg_skill"
-            app:layout_constraintEnd_toStartOf="@id/in_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc3_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/pc_skill"
+            android:id="@+id/rc5_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Perception"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/kl_skill"
-            app:layout_constraintEnd_toStartOf="@id/pc_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc4_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/pf_skill"
+            android:id="@+id/rc6_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Perform"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/pc_skill"
-            app:layout_constraintEnd_toStartOf="@id/pf_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc5_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/pr_skill"
+            android:id="@+id/rc7_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Profession"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/pf_skill"
-            app:layout_constraintEnd_toStartOf="@id/pr_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc6_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/rd_skill"
+            android:id="@+id/rc8_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Ride"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/pr_skill"
-            app:layout_constraintEnd_toStartOf="@id/rd_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc7_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/sm_skill"
+            android:id="@+id/rc9_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Sense Motive"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/rd_skill"
-            app:layout_constraintEnd_toStartOf="@id/sm_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc8_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/st_skill"
+            android:id="@+id/rc10_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Stealth"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/sm_skill"
-            app:layout_constraintEnd_toStartOf="@id/st_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc9_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/sr_skill"
+            android:id="@+id/rc11_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Survival"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/st_skill"
-            app:layout_constraintEnd_toStartOf="@id/sr_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc10_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
     <TextView
-            android:id="@+id/sw_skill"
+            android:id="@+id/rc12_skill"
             android:layout_width="120dp"
             android:layout_height="25dp"
             android:text="Swim"
             android:gravity="start"
-            app:layout_constraintTop_toBottomOf="@id/sr_skill"
-            app:layout_constraintEnd_toStartOf="@id/sw_val"/>
+            app:layout_constraintTop_toBottomOf="@id/rc11_skill"
+            app:layout_constraintEnd_toStartOf="@id/rc1_val"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,6 @@ open class CharacterMod : Parcelable  {
     var fortMod: Int
     var refMod: Int
     var willMod: Int
-    var rageMod: Int
     var spells1Mod: Int
     var spells2Mod: Int
     var spells3Mod: Int
@@ -43,7 +42,7 @@ open class CharacterMod : Parcelable  {
                 acShiModArg: Int, acDefModArg: Int, acNatModArg: Int,
                 acDodModArg: Int, acSizModArg: Int, cmbModArg: Int,
                 cmdModArg: Int, fortModArg: Int, refModArg: Int,
-                willModArg: Int, rageModArg: Int, spells1ModArg: Int,
+                willModArg: Int, spells1ModArg: Int,
                 spells2ModArg: Int, spells3ModArg: Int) {
         modName = modNameArg
         twoHands = twoHandsArg
@@ -54,7 +53,7 @@ open class CharacterMod : Parcelable  {
         dexMod = dexModArg
         conMod = conModArg
         intMod = intModArg
-        wisMod = willModArg
+        wisMod = wisModArg
         chrMod = chrModArg
         hitMod = hitModArg
         dmgMod = dmgModArg
@@ -70,7 +69,6 @@ open class CharacterMod : Parcelable  {
         fortMod = fortModArg
         refMod = refModArg
         willMod = willModArg
-        rageMod = rageModArg
         spells1Mod = spells1ModArg
         spells2Mod = spells2ModArg
         spells3Mod = spells3ModArg
@@ -102,7 +100,6 @@ open class CharacterMod : Parcelable  {
         fortMod = 0
         refMod = 0
         willMod = 0
-        rageMod = 0
         spells1Mod = 0
         spells2Mod = 0
         spells3Mod = 0
@@ -134,12 +131,12 @@ open class CharacterMod : Parcelable  {
         fortMod = parcel.readInt()
         refMod = parcel.readInt()
         willMod = parcel.readInt()
-        rageMod = parcel.readInt()
         spells1Mod = parcel.readInt()
         spells2Mod = parcel.readInt()
         spells3Mod = parcel.readInt()
     }
 
+    // must be parcelable to pass between activities
     companion object {
         @JvmField
         val CREATOR = object : Parcelable.Creator<CharacterMod> {
@@ -149,7 +146,6 @@ open class CharacterMod : Parcelable  {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-
         parcel.writeString(modName)
         if (twoHands) {
             parcel.writeInt(1)
@@ -179,12 +175,10 @@ open class CharacterMod : Parcelable  {
         parcel.writeInt(fortMod)
         parcel.writeInt(refMod)
         parcel.writeInt(willMod)
-        parcel.writeInt(rageMod)
         parcel.writeInt(spells1Mod)
         parcel.writeInt(spells2Mod)
         parcel.writeInt(spells3Mod)
     }
 
     override fun describeContents() = 0
-
 }

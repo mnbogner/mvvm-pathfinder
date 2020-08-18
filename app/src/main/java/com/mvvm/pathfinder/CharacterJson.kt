@@ -3,11 +3,12 @@ package com.mvvm.pathfinder
 class CharacterJson : Character {
 
     constructor():super() {
-        System.out.println("FOO - json constructor")
+
     }
 
     override fun applyProgression() {
-        return
+        // loaded into base class from json
+        addMod(progressionMod)
     }
 
     override fun getBaseStat(stat: Stat): Int {
@@ -15,77 +16,17 @@ class CharacterJson : Character {
     }
 
     override fun getWeaponMods(): ArrayList<CharacterMod> {
-        val mods : ArrayList<CharacterMod> = ArrayList<CharacterMod>()
-        return mods
+        // loaded into base class from json
+        return weaponModList
     }
 
     override fun getArmorMods(): ArrayList<CharacterMod> {
-        val mods: ArrayList<CharacterMod> = ArrayList<CharacterMod>()
-        return mods
+        // loaded into base class from json
+        return armorModList
     }
 
     override fun getButtonMods(): ArrayList<ButtonMod> {
-        var buttons: ArrayList<ButtonMod> = ArrayList<ButtonMod>()
-        return buttons
+        // loaded into base class from json
+        return buttonModList
     }
-
-    override fun getGrappleMod(): CharacterMod {
-        val mod: CharacterMod = CharacterMod("foo", false, Dice.D4,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0)
-        return mod
-    }
-
-    override fun getRagingMod(): CharacterMod {
-        val mod: CharacterMod = CharacterMod("foo", false, Dice.D4,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0)
-        return mod
-    }
-
-    override fun getHasteMod(): CharacterMod {
-        val mod: CharacterMod = CharacterMod("foo", false, Dice.D4,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0)
-        return mod
-    }
-
-    override fun getEnlargeMod(): CharacterMod {
-        val mod: CharacterMod = CharacterMod("foo", false, Dice.D4,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0)
-        return mod
-    }
-
-
-
-
 }

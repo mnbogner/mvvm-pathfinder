@@ -2,6 +2,10 @@ package com.mvvm.pathfinder
 
 abstract class Character {
 
+    var weaponModList: ArrayList<CharacterMod>
+    var armorModList: ArrayList<CharacterMod>
+    var buttonModList: ArrayList<ButtonMod>
+    var progressionMod: CharacterMod
     var characterName: String
     var level: Int
     var hpPerLvl: Int
@@ -15,12 +19,22 @@ abstract class Character {
     var fortBase: Int
     var refBase: Int
     var willBase: Int
+    var featList: ArrayList<InfoObject>
+    var abilityList: ArrayList<InfoObject>
+    var skillList: ArrayList<InfoObject>
+    var lv1SpellList: ArrayList<InfoObject>
+    var lv2SpellList: ArrayList<InfoObject>
+    var lv3SpellList: ArrayList<InfoObject>
 
     constructor(characterNameArg: String,
                 levelArg: Int, hpPerLvlArg: Int, babArg: Int,
                 strBaseArg: Int, dexBaseArg: Int, conBaseArg: Int,
                 intBaseArg: Int, wisBaseArg: Int, chrBaseArg: Int,
                 fortBaseArg: Int, refBaseArg: Int, willBaseArg: Int) {
+        weaponModList = ArrayList<CharacterMod>()
+        armorModList = ArrayList<CharacterMod>()
+        buttonModList = ArrayList<ButtonMod>()
+        progressionMod = CharacterMod()
         characterName = characterNameArg
         level = levelArg
         hpPerLvl = hpPerLvlArg
@@ -34,10 +48,19 @@ abstract class Character {
         fortBase = fortBaseArg
         refBase = refBaseArg
         willBase = willBaseArg
-        System.out.println("FOO - character argument constructor")
+        featList = ArrayList<InfoObject>()
+        abilityList = ArrayList<InfoObject>()
+        skillList = ArrayList<InfoObject>()
+        lv1SpellList = ArrayList<InfoObject>()
+        lv2SpellList = ArrayList<InfoObject>()
+        lv3SpellList = ArrayList<InfoObject>()
     }
 
     constructor() {
+        weaponModList = ArrayList<CharacterMod>()
+        armorModList = ArrayList<CharacterMod>()
+        buttonModList = ArrayList<ButtonMod>()
+        progressionMod = CharacterMod()
         characterName = "..."
         level = 0
         hpPerLvl = 0
@@ -51,26 +74,13 @@ abstract class Character {
         fortBase = 0
         refBase = 0
         willBase = 0
-        System.out.println("FOO - character default constructor")
+        featList = ArrayList<InfoObject>()
+        abilityList = ArrayList<InfoObject>()
+        skillList = ArrayList<InfoObject>()
+        lv1SpellList = ArrayList<InfoObject>()
+        lv2SpellList = ArrayList<InfoObject>()
+        lv3SpellList = ArrayList<InfoObject>()
     }
-
-    /*
-    init {
-        characterName = characterNameArg
-        level = levelArg
-        hpPerLvl = hpPerLvlArg
-        bab = babArg
-        strBase = strBaseArg
-        dexBase = dexBaseArg
-        conBase = conBaseArg
-        intBase = intBaseArg
-        wisBase = wisBaseArg
-        chrBase = chrBaseArg
-        fortBase = fortBaseArg
-        refBase = refBaseArg
-        willBase = willBaseArg
-    }
-    */
 
     companion object {
         val unarmedMod: CharacterMod = CharacterMod("unarmed", false, Dice.D4,
@@ -81,17 +91,14 @@ abstract class Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
-
         fun getBonus(statVal: Int): Int {
-
             return (statVal - 10) / 2
         }
     }
 
     var mods: ArrayList<String> = ArrayList<String>()
-
     var tempMod: CharacterMod = CharacterMod("temp", false, null,
         0, 0, 0,
         0, 0, 0,
@@ -100,19 +107,16 @@ abstract class Character {
         0, 0, 0,
         0, 0, 0,
         0, 0, 0,
-        0, 0, 0,
+        0, 0,
         0, 0)
-
     var acBase: Int = 10
     var cmdBase: Int = 10 // CMB base = BAB
-
     var strMod: Int = 0
     var dexMod: Int = 0
     var conMod: Int = 0
     var intMod: Int = 0
     var wisMod: Int = 0
     var chrMod: Int = 0
-
     var hpMod: Int = 0
     var hpPerLvlMod: Int = 0
     var hitMod: Int = 0
@@ -129,21 +133,15 @@ abstract class Character {
     var fortMod: Int = 0
     var refMod: Int = 0
     var willMod: Int = 0
-    var rageMod: Int = 0
-
     var spells1Mod: Int = 0
     var spells2Mod: Int = 0
     var spells3Mod: Int = 0
-
     var dmgNonlethal: Int = 0
     var useBothHands: Int = 0
-    var flatFooted: Int = 0
-
     var damageDice: Dice = Dice.D4
 
     fun getBaseStats(): HashMap<Stat, String> {
         var stats: HashMap<Stat, String> = HashMap<Stat, String>()
-
         var strExtra: String = ""
         var dexExtra: String = ""
         var conExtra: String = ""
@@ -219,11 +217,13 @@ abstract class Character {
         var hit: Int = bab + hitMod + getBonus(Stat.STR) + acSizMod // size mod seems to apply to hit bonus
         // TODO: add ranged flag
         if (mods.contains("longbow")) {
-            System.out.println("FOO - TEMP RANGED HACK (hit)")
+            // TODO: implement ranged weapon bonuses
             hit = bab + hitMod + getBonus(Stat.DEX) + acSizMod // size mod seems to apply to hit bonus
         }
         var hitText: String = "+" + hit.toString()
-        if (bab > 5) {
+        if (bab > 10) {
+            hitText = hitText + "/+" + (hit - 5).toString() + "/+" + (hit - 10).toString()
+        } else if (bab > 5) {
             hitText = hitText + "/+" + (hit - 5).toString()
         }
 
@@ -231,9 +231,7 @@ abstract class Character {
         var dmg: Int = dmgMod + getBonus(Stat.STR)
         // TODO: add ranged flag
         if (mods.contains("longbow")) {
-            System.out.println("FOO - TEMP RANGED HACK (dmg)")
-            // IGNORE: got adaptive longbow, uses full strength rating
-            // dmg = dmgMod
+            // TODO: implement ranged weapon bonuses
         }
         var dmgText: String = getDamageDice(damageDice).str + "+" + dmg.toString()
 
@@ -268,15 +266,6 @@ abstract class Character {
         var will: Int = willBase + willMod + getBonus(Stat.WIS)
         var willText: String = "+" + will.toString()
 
-        // calculate rounds of rage
-        var rage: Int = getBaseRage() + rageMod
-        var rageText: String = "RAGE(" + rage + ")"
-
-        // calculate bonus ac from blood armor
-        // currently only blood armor modifies temp ac
-        var blood: Int = tempMod.acMod
-        var bloodText: String = "BLOOD(" + blood + ")"
-
         stats.put(Stat.HP, hpText)
         stats.put(Stat.HIT, hitText)
         stats.put(Stat.DMG, dmgText)
@@ -286,8 +275,6 @@ abstract class Character {
         stats.put(Stat.FORT, fortText)
         stats.put(Stat.REF, refText)
         stats.put(Stat.WILL, willText)
-        stats.put(Stat.RAGE, rageText)
-        stats.put(Stat.BLOOD, bloodText)
         return stats
     }
 
@@ -328,38 +315,16 @@ abstract class Character {
 
     abstract fun getBaseStat(stat: Stat): Int
 
-    fun getBaseRage(): Int {
-        // 4 + constitution modifier, 2 additional rounds for each level after 1st
-        return 4 + (getBonus(getBaseStat(Stat.CON))) + ((level - 1) * 2)
-    }
-
     abstract fun getWeaponMods(): ArrayList<CharacterMod>
 
     abstract fun getArmorMods(): ArrayList<CharacterMod>
 
     abstract fun getButtonMods(): ArrayList<ButtonMod>
-
-    abstract fun getGrappleMod(): CharacterMod
-
-    // abstract fun getPinMod(): CharacterMod
-
-    abstract fun getRagingMod(): CharacterMod
-
-    abstract fun getHasteMod(): CharacterMod
-
-    abstract fun getEnlargeMod(): CharacterMod
-
-    //abstract fun initWeapons(): String
-
-    //abstract fun cycleWeapons(currentWeapon: String): String
-
     fun addMod(mod: CharacterMod) {
         if (mods.contains(mod.modName)) {
-            System.out.println("FOO: SKIP MOD " + mod.modName)
             // already added, no-op
             return
         } else {
-            System.out.println("FOO: ADD MOD " + mod.modName)
             mods.add(mod.modName)
             strMod += mod.strMod
             dexMod += mod.dexMod
@@ -384,8 +349,6 @@ abstract class Character {
             fortMod += mod.fortMod
             refMod += mod.refMod
             willMod += mod.willMod
-            rageMod += mod.rageMod
-
             spells1Mod += mod.spells1Mod
             spells2Mod += mod.spells2Mod
             spells3Mod += mod.spells3Mod
@@ -395,7 +358,6 @@ abstract class Character {
             }
 
             val localDice : Dice? = mod.dmgDice
-
             if (localDice != null) {
                 damageDice = localDice
             }
@@ -404,11 +366,9 @@ abstract class Character {
 
     fun removeMod(mod: CharacterMod) {
         if (!mods.contains(mod.modName)) {
-            System.out.println("FOO: SKIP MOD " + mod.modName)
             // already removed, no-op
             return
         } else {
-            System.out.println("FOO: REMOVE MOD " + mod.modName)
             mods.remove(mod.modName)
             strMod -= mod.strMod
             dexMod -= mod.dexMod
@@ -433,8 +393,6 @@ abstract class Character {
             fortMod -= mod.fortMod
             refMod -= mod.refMod
             willMod -= mod.willMod
-            rageMod -= mod.rageMod
-
             spells1Mod -= mod.spells1Mod
             spells2Mod -= mod.spells2Mod
             spells3Mod -= mod.spells3Mod
@@ -450,12 +408,10 @@ abstract class Character {
     }
 
     fun adjustMod(stat: Stat, mod: Int) {
-
         if (!mods.contains(tempMod.modName)) {
             // register temp mods
             mods.add(tempMod.modName)
         }
-
         when (stat) {
             Stat.HP -> {
                 hpMod += mod
@@ -489,29 +445,6 @@ abstract class Character {
                 chrMod += mod
                 tempMod.chrMod += mod
             }
-            Stat.RAGE -> {
-                if (getBaseRage() + rageMod == 0 ) {
-                    // loop around after hitting 0
-                    rageMod = 0
-                    tempMod.rageMod = 0
-                } else {
-                    rageMod += mod
-                    tempMod.rageMod += mod
-                }
-            }
-            Stat.AC -> {
-                if (mod == 0) {
-                    // hack to reset value
-                    acMod -= tempMod.acMod
-                    tempMod.acMod = 0
-                } else if (tempMod.acMod == 5 ) {
-                    // bonus capped at 5 (max for blood armor spell)
-                    // no-op
-                } else {
-                    acMod += mod
-                    tempMod.acMod += mod
-                }
-            }
             Stat.NL -> {
                 dmgNonlethal += mod
             }
@@ -529,7 +462,6 @@ abstract class Character {
     }
 
     fun getBonus(stat: Stat): Int {
-
         when (stat) {
             Stat.STR -> {
                 return getBonus(strBase + strMod)
@@ -554,13 +486,10 @@ abstract class Character {
     }
 
     fun getDamageDice(baseDice: Dice): Dice {
-
         // 0 = medium, +1 = small, -1 = large
-
         if (acSizMod == 0) {
             return baseDice
         }
-
         when (baseDice) {
             Dice.D4 -> {
                 if (acSizMod > 0) {
@@ -606,6 +535,5 @@ abstract class Character {
             }
             else -> return Dice.D
         }
-
     }
 }

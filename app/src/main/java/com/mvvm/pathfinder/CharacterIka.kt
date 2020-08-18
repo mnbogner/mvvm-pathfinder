@@ -1,31 +1,32 @@
 package com.mvvm.pathfinder
 
+// TODO: copy info in comments to somewhere else now that character is loaded from json file
+
 class CharacterIka : Character {
 
-    constructor():super("I'ka", 10, 6, 10, 14, 15, 14, 8, 14, 14, 7, 3, 3) {
-        System.out.println("FOO - ika constructor")
-    }
-
-    companion object {
-        // racial abilities - aasimar/agathion: +2 con, +2 cha, +2 cmd (replaces spell-like ability)
+    constructor():super("I'ka", 11, 6, 11, 14, 15, 14, 8, 14, 14, 7, 3, 3) {
+        // racial abilities - aasimar/agathion: +2 con, +2 chr, +2 cmd (replaces spell-like ability)
         // traits: +1 cmb/intimidate (bred for war), +1 hp/skill per lvl (finding your kin)
         // stats: +1 dex lv4, +1 cha lv8
         // favored class bonus: +1 hp per lvl
-        // automatic progression - lv+1: resistance +3, deflection +2, mental prowess +4 wis, physical prowess +2 con, toughening +1
+        // automatic progression - lv+1: resistance +3, deflection +2, mental prowess +4 wis, physical prowess +4 str, toughening +1
         // belt of the weasel: +2 dex
+        // caster torque: +2 lv1 spells
         // divine favor - tegura: natural +1
         // spells: 2+1 lv1, 1+1 lv2, 1+1 lv3
-        val progressionMod: CharacterMod = CharacterMod("progression", false, null,
-            0, 1+1, 0,        // hp, hp/lvl, str
-            1+2, 2+2, 0,      // dex, con, int
-            4, 2+1, 0,      // wis, cha, hit
+        progressionMod = CharacterMod("progression", false, null,
+            0, 1+1, 4,        // hp, hp/lvl, str
+            1+2, 2, 0,      // dex, con, int
+            4, 2+1, 0,      // wis, chr, hit
             0, 0, 0,        // dmg, ac, armor
             0, 2, 1+1,      // shield, deflect, natural
             0, 0, 1,        // dodge, size, cmb
             2, 3, 3,      // cmd, fort, ref
-            3, 0*10, 2+1, // will, rage*lvl, lv1 spells
+            3, 2+1+2, // will, rage*lvl, lv1 spells (2 base spells doubled by ring/torc of wizardry)
             1+1, 1+1)       // lv2 spells, lv3 spells
+    }
 
+    companion object {
         // cestus
         // automatic progression lv+1: weapon attunement +2
         val cestusMod: CharacterMod = CharacterMod("cestus", false, Dice.D4,
@@ -36,7 +37,7 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
 
         // longspear
@@ -49,7 +50,7 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
 
         // yaku'oi ironwood scimitar
@@ -62,7 +63,7 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
 
         // yaku'oi composite longbow
@@ -75,7 +76,7 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
 
         // improved grapple: +2 cmb/cmd
@@ -89,7 +90,7 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 4,
             2, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
 
         // darkleaf lamellar
@@ -101,7 +102,7 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
 
         // yaku'oi ironwood buckler
@@ -114,22 +115,11 @@ class CharacterIka : Character {
             1+2, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0)
 
         // grappling modifiers
         // ignoring cmb penalty because it doesn't affect grappling while grappled
-        val grappleMod: CharacterMod = CharacterMod("grapple", false, null,
-            0, 0, 0,
-            -4, 0, 0,
-            0, 0, -2,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0)
-
         val grappleButton: ButtonMod = ButtonMod("grapple", false, null,
             0, 0, 0,
             -4, 0, 0,
@@ -138,61 +128,24 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0, false,
             false, false, 0)
 
-        /*
-        // pinning modifiers
-        // grabbing style: don't lose dex bonus to ac when pinning
-        val pinMod: CharacterMod = CharacterMod("pin", false, null,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0)
-        */
-
         // rage modifiers
-        val ragingMod: CharacterMod = CharacterMod("rage", false, null,
-            0, 0, 4,
-            0, 4, 0,
-            0, 0, 0,
-            0, -2, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            2, 0, 0,
-            0, 0)
-
         val ragingButton: ButtonMod = ButtonMod("rage", false, null,
-            0, 0, 4,
-            0, 4, 0,
+            0, 0, 6,
+            0, 6, 0,
             0, 0, 0,
             0, -2, 0,
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            2, 0, 0,
+            3, 0,
             0, 0, true,
             false, true, 25)
 
         // haste modifiers
-        val hasteMod: CharacterMod = CharacterMod("haste", false, null,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 1,
-            0, 0, 0,
-            0, 0, 0,
-            1, 0, 0,
-            0, 0, 1,
-            0, 0, 0,
-            0, 0)
-
         val hasteButton: ButtonMod = ButtonMod("haste", false, null,
             0, 0, 0,
             0, 0, 0,
@@ -201,22 +154,11 @@ class CharacterIka : Character {
             0, 0, 0,
             1, 0, 0,
             0, 0, 1,
-            0, 0, 0,
+            0, 0,
             0, 0, false,
             false, false, 0)
 
         // enlarge modifiers
-        val enlargeMod: CharacterMod = CharacterMod("enlarge", false, null,
-            0, 0, 2,
-            -2, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, -1, 0,
-            0, 0, 0,
-            0, 0, 0,
-            0, 0)
-
         val enlargeButton: ButtonMod = ButtonMod("enlarge", false, null,
             0, 0, 2,
             -2, 0, 0,
@@ -225,10 +167,11 @@ class CharacterIka : Character {
             0, 0, 0,
             0, -1, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0, false,
             false, false, 0)
 
+        // blood armor modifiers
         val bloodButton: ButtonMod = ButtonMod("blood", false, null,
             0, 0, 0,
             0, 0, 0,
@@ -237,7 +180,7 @@ class CharacterIka : Character {
             0, 0, 0,
             0, 0, 0,
             0, 0, 0,
-            0, 0, 0,
+            0, 0,
             0, 0, true,
             true, false, 5)
     }
@@ -276,27 +219,5 @@ class CharacterIka : Character {
         buttons.add(enlargeButton)
         buttons.add(bloodButton)
         return buttons
-    }
-
-    override fun getGrappleMod(): CharacterMod {
-        return grappleMod
-    }
-
-    /*
-    override fun getPinMod(): CharacterMod {
-        return pinMod
-    }
-    */
-
-    override fun getRagingMod(): CharacterMod {
-        return ragingMod
-    }
-
-    override fun getHasteMod(): CharacterMod {
-        return hasteMod
-    }
-
-    override fun getEnlargeMod(): CharacterMod {
-        return enlargeMod
     }
 }
